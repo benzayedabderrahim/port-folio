@@ -1,0 +1,50 @@
+.messages-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 400px; /* Adjust as needed */
+    background-color: #fff;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .messages-modal.show {
+    transform: translateX(0);
+  }
+  
+  .message-list {
+    padding: 20px;
+    overflow-y: auto;
+    height: calc(100% - 120px);
+  }
+  
+  .message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .sender-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .message-content {
+    flex: 1;
+  }
+  
+  .sender-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .message-time {
+    color: #888;
+    font-size: 0.8rem;
+  }
+  
