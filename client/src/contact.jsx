@@ -28,7 +28,7 @@ function Contact() {
   const countryOptions = [
     'Tunisia', 'Algeria', 'Germany', 'United Kingdom', 'Spain',
     'Portugal', 'Italy', 'Switzerland', 'Poland', 'France',
-    'Canada', 'USA'
+    'Canada', 'USA', 'Austria', 'Turkey'
   ];
 
   const handleChange = (e) => {
@@ -74,10 +74,10 @@ function Contact() {
       <div className="container">
         <h2>Get in touch !</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="fname">First Name</label>
+          <label htmlFor="fname">Your first name</label>
           <input type="text" id="fname" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="Your name.." />
 
-          <label htmlFor="lname">Last Name</label>
+          <label htmlFor="lname">Your last name</label>
           <input type="text" id="lname" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Your last name.." />
 
           <label htmlFor="country">Country</label>
@@ -104,7 +104,7 @@ function Contact() {
             </div>
           )}
 
-          <label htmlFor="subject">Subject</label>
+          <label htmlFor="subject">Write your beautiful message here ❤</label>
           <textarea id="subject" name="subject" value={formData.subject} onChange={handleChange} placeholder="Write something.." style={{ height: '200px' }}></textarea>
 
           {!showWarning && <input type="submit" value="Submit" />}
