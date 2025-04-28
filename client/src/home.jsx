@@ -93,7 +93,7 @@ function Home() {
             <FontAwesomeIcon icon={faGraduationCap} style={{ marginRight: '10px', color: '#4682b4' }} />
             2021-2024 : Bachelor degree <br />
             <span className="section">National Diploma in Business Computing</span> <br />
-            Higher Institute of Management, Gabés, Tunisia
+            Higher Institute of Management, Gabes, Tunisia
           </li>
         </ul>
       </div>
@@ -101,7 +101,7 @@ function Home() {
     <br /> <br /> <br />
     <section className="projects-section" data-aos='zoom-in'>
   <div>
-    <h2 style={{ color: 'Blue' }}>Projects</h2>
+    <h2 style={{ color: 'Blue' }}>My Projects</h2>
     <ul className="projects-list">
       <li>
         <FontAwesomeIcon icon={faBriefcase} style={{ marginRight: '10px' }} />
