@@ -72,7 +72,7 @@ function Contact() {
       <br />
       <Navbar />
       <div className="container">
-        <h2>Get in touch !</h2>
+        <h2>Get in touch with me !</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="fname">Your first name</label>
           <input type="text" id="fname" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="Your name.." />
