@@ -44,11 +44,11 @@ function Home() {
         </div>
         <div>
           <h5 className="text-left">
-            I'm a junior web developer <br />
+            I'm an IT specialist <br />
             and I have{' '}
             <span style={{ fontWeight: 'bold', color: 'skyblue' }}>
               <Typewriter
-                words={['Bachelor degree in Business Computing', 'Participating in many projects']}
+                words={['Bachelor degree in Business Computing', 'Participated in many projects' , 'Participated in many social events']}
                 loop={true}
                 typeSpeed={50}
                 deleteSpeed={40}
@@ -73,7 +73,7 @@ function Home() {
           <li><i className="fas fa-database"></i>MySQL</li>
           <li><i className="fab fa-node-js"></i>NodeJS</li>
           <li><i className="fab fa-react"></i>ReactJS</li>
-          <li><i className="fab fa-python"></i>Python</li>
+          <li><i className="fab fa-python"></i>Django</li>
           <li><i className="fa-solid fa-palette"></i>Graphic Design</li>
           <li><i className="fa-solid fa-file-video"></i>Video Editing</li>
         </ul>
