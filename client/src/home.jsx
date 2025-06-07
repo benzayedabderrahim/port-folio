@@ -292,7 +292,7 @@ function Home() {
          </li>
          <li>
            <img src={require('./pics/en.png')}  alt="UK Flag" className="flag-icon" />
-          English – Speaking, Writing, Professional
+          English – Excellent
           </li>
          <li>
          <img src={require('./pics/fr.png')}  alt="French Flag" className="flag-icon" />
