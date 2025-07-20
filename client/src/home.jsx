@@ -44,23 +44,24 @@ function Home() {
     { icon: faGraduationCap, year: '2021-2024', title: 'Bachelor Degree in Business Computing', description: 'Higher Institute of Management, Gabes' },
   ];
 
-  const projects = [
-    {
-      icon: faBriefcase,
-      title: 'End of Studies Project',
-      description: 'Marketplace platform for agriculture: products, land, and community. Built with Node.js, React, MySQL, Bootstrap.',
-      link: '/projects/marketplace',
-      external: false,
-    },
-    {
-      icon: faBriefcase,
-      title: 'Currency Converter',
-      description: 'Simple Euro/TND converter. Built with React and Bootstrap.',
-      link: 'https://github.com/benzayedabderrahim/CurrencyConvertor',
-      external: true,
-    },
-  ];
-
+const projects = [
+  {
+    icon: faBriefcase,
+    title: 'End of Studies Project',
+    description: 'Marketplace platform for agriculture: products, land, and community.',
+    link: '/projects/marketplace',
+    external: false,
+    video: require('./components/video/vid1.mp4')
+  },
+  {
+    icon: faBriefcase,
+    title: 'Currency Converter',
+    description: 'Simple Euro/TND converter. Built with React and Bootstrap.',
+    link: 'https://github.com/benzayedabderrahim/CurrencyConvertor',
+    external: true,
+    video: require('./components/video/vid1.mp4')
+  },
+];
   const workExperience = [
     {
       icon: faBriefcase,
@@ -93,15 +94,17 @@ function Home() {
     document.body.style.overflow = 'auto';
   };
 
-  const openVideoModal = () => {
-    setShowVideoModal(true);
-    document.body.style.overflow = 'hidden';
-  };
+const [currentVideo, setCurrentVideo] = useState(null);
 
-  const closeVideoModal = () => {
-    setShowVideoModal(false);
-    document.body.style.overflow = 'auto';
-  };
+const openVideoModal = (videoSrc) => {
+  setCurrentVideo(videoSrc);
+  document.body.style.overflow = 'hidden';
+};
+
+const closeVideoModal = () => {
+  setCurrentVideo(null);
+  document.body.style.overflow = 'auto';
+};
 
   return (
     <>
@@ -149,30 +152,35 @@ function Home() {
         </ul>
       </section>
 
-      <section className="section dark-section" data-aos="zoom-in">
-        <h2>My Projects</h2>
-        <ul className="project-list">
-          {projects.map((proj, index) => (
-            <li key={index}>
-              <FontAwesomeIcon icon={proj.icon} />
-              <h4>
-                {proj.external ? (
-                  <a href={proj.link} target="_blank" rel="noopener noreferrer">{proj.title}</a>
-                ) : (
-                  <NavLink to={proj.link}>{proj.title}</NavLink>
-                )}
-              </h4>
-              <p>{proj.description}</p>
-            </li>
-          ))}
-        </ul>
-        <div className="demo-btn-container">
-          <button className="demo-btn" onClick={openVideoModal}>
-            <span className="btn-icon">▶</span>
-            <span className="btn-text">Watch Demo</span>
-          </button>
-        </div>
-      </section>
+          <section className="section dark-section" data-aos="zoom-in">
+              <h2>My Projects</h2>
+              <ul className="project-list">
+                {projects.map((proj, index) => (
+                  <li key={index}>
+                    <FontAwesomeIcon icon={proj.icon} />
+                    <h4>
+                      {proj.external ? (
+                        <a href={proj.link} target="_blank" rel="noopener noreferrer">
+                          {proj.title}
+                        </a>
+                      ) : (
+                        <NavLink to={proj.link}>{proj.title}</NavLink>
+                      )}
+                    </h4>
+                    <p>{proj.description}</p>
+                    {proj.video && (
+                      <button 
+                        className="demo-btn" 
+                        onClick={() => openVideoModal(proj.video)}
+                      >
+                        <span className="btn-icon">▶</span>
+                        <span className="btn-text">View Demo</span>
+                      </button>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
 
       <section className="section" data-aos="zoom-out">
         <h2>Work Experience</h2>
@@ -223,23 +231,24 @@ function Home() {
         <h2>Contact</h2>
         <ul className="contact-list">
           <li><i className="fas fa-envelope"></i> benzayedabderrahim@gmail.com</li>
-          <li><i className="fab fa-whatsapp"></i> +216 29 200 623</li>
           <li><i className="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/abderrahim-benzayed-b4694a234/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
           <li><i className="fab fa-github"></i> <a href="https://github.com/benzayedabderrahim" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         </ul>
       </section>
 
-      {showVideoModal && (
-        <div className="modal-overlay" onClick={closeVideoModal}>
-          <div className="modal-content video-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeVideoModal} aria-label="Close video modal">&times;</button>
-            <video controls autoPlay>
-              <source src="./components/video/vid1.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+        {currentVideo && (
+          <div className="modal-overlay" onClick={closeVideoModal}>
+            <div className="modal-content video-modal" onClick={(e) => e.stopPropagation()}>
+              <button className="modal-close" onClick={closeVideoModal}>
+                &times;
+              </button>
+              <video controls autoPlay muted key={currentVideo}>
+                <source src={currentVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
       {modalData && (
         <div className="modal-overlay" onClick={closeModal}>
