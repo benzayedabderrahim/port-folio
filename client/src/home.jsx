@@ -48,7 +48,7 @@ const projects = [
   {
     icon: faBriefcase,
     title: 'Re\'Vision App',
-    description: 'Simple analyzing youtube videos app using Python and ReactJS.',
+    description: 'Simple analyzing youtube videos app using Google API (YouTube v3) , Django and ReactJS.',
     link: 'https://github.com/benzayedabderrahim/ReVisionApp--Frontend-.git',
     external: true,
     video: require('./components/video/rev.mp4')
@@ -56,7 +56,7 @@ const projects = [
   {
     icon: faBriefcase,
     title: 'End of Studies Project',
-    description: 'Marketplace platform for agriculture: products, land, and community.',
+    description: 'Marketplace platform for agriculture: products, land, and community. Built with ReactJS , NodeJS and MySQL',
     link: '/projects/marketplace',
     external: false,
     video: require('./components/video/vid1.mp4')
@@ -64,7 +64,7 @@ const projects = [
   {
     icon: faBriefcase,
     title: 'Currency Converter',
-    description: 'Simple Euro/TND converter. Built with React and Bootstrap.',
+    description: 'Simple currency converter. Built with HTML & JavaScript',
     link: 'https://github.com/benzayedabderrahim/CurrencyConvertor',
     external: true,
     video: require('./components/video/currconv.mp4')
@@ -86,10 +86,10 @@ const projects = [
   const socialLife = [
     {
       icon: faUserFriends,
-      description: <>Chief of Robotics Department, <a href="https://www.facebook.com/CubresClub" target="_blank" rel="noopener noreferrer">CUBERS Club</a> (2021–2024)</>,
+      description: <>Member <a href="https://www.facebook.com/CubresClub" target="_blank" rel="noopener noreferrer">CUBERS Club</a> (2021–2024)</>,
     },
     { icon: faPeopleGroup, description: 'Participant, Sm\'art Hackathon, Gabes (Dec 2023)' },
-    { icon: faCrown, description: <>President, <a href="https://www.facebook.com/CubresClub" target="_blank" rel="noopener noreferrer">CUBERS Club</a> (2024–Now)</> },
+    { icon: faCrown, description: <>President, <a href="https://www.facebook.com/CubresClub" target="_blank" rel="noopener noreferrer">CUBERS Club</a> (July 2024 – Juin 2025 )</> },
   ];
 
   const openModal = (item) => {
