@@ -22,22 +22,20 @@ import { Typewriter, Cursor } from 'react-simple-typewriter';
 
 function Home() {
   const [modalData, setModalData] = useState(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
-  // Graphic design items model
   const graphicItems = [
     { src: require('./pics/design1.png'), title: '9th April , poster design', description: 'A creative poster for the national day' },
     { src: require('./pics/design2.png'), title: 'Exams poster', description: 'An exams poster to motivate the students' },
     { src: require('./pics/design3.png'), title: 'Motivation', description: 'Motivational poster for exams.' },
     { src: require('./pics/FCSIT.png'), title: 'Event Poster', description: 'Professional poster for FCSIT event' },
     { src: require('./pics/aff.png'), title: 'Eid poster', description: 'Poster of Eid AL Adha' },
-
   ];
 
-  // Skills data model
   const skills = [
     { icon: 'fab fa-html5', text: 'HTML' },
     { icon: 'fab fa-css3-alt', text: 'CSS' },
@@ -50,7 +48,6 @@ function Home() {
     { icon: 'fa-solid fa-file-video', text: 'Video Editing' },
   ];
 
-  // Academic career data model
   const academicCareer = [
     {
       icon: faCertificate,
@@ -66,14 +63,13 @@ function Home() {
     },
   ];
 
-  // Projects data model
   const projects = [
     {
       icon: faBriefcase,
       title: 'End of Studies Project',
       description:
         'Marketplace platform for agriculture: products, land, and community. Built with Node.js, React, MySQL, Bootstrap.',
-      link: '/projects/marketplace', // Use React Router paths, avoid source paths
+      link: '/projects/marketplace',
       external: false,
     },
     {
@@ -85,7 +81,6 @@ function Home() {
     },
   ];
 
-  // Work experience data model
   const workExperience = [
     {
       icon: faBriefcase,
@@ -108,46 +103,31 @@ function Home() {
     },
   ];
 
-  // Social life data model
   const socialLife = [
-    {
-      icon: faUserFriends,
-      description: (
-        <>
-          Chief of Robotics Department,{' '}
-          <a href="https://www.facebook.com/CubresClub" target="_blank" rel="noopener noreferrer">
-            CUBERS Club
-          </a>{' '}
-          (2021–2024)
-        </>
-      ),
-    },
     {
       icon: faPeopleGroup,
       description: 'Participant, Sm\'art Hackathon, Gabes (Dec 2023)',
-    },
-    {
-      icon: faCrown,
-      description: (
-        <>
-          President,{' '}
-          <a href="https://www.facebook.com/CubresClub" target="_blank" rel="noopener noreferrer">
-            CUBERS Club
-          </a>{' '}
-          (2024–Now)
-        </>
-      ),
     },
   ];
 
   const openModal = (item) => {
     setModalData(item);
-    document.body.style.overflow = 'hidden'; // Disable background scroll
+    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setModalData(null);
-    document.body.style.overflow = 'auto'; // Enable scroll back
+    document.body.style.overflow = 'auto';
+  };
+
+  const openVideoModal = () => {
+    setShowVideoModal(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeVideoModal = () => {
+    setShowVideoModal(false);
+    document.body.style.overflow = 'auto';
   };
 
   return (
@@ -156,7 +136,6 @@ function Home() {
         <Navbar />
       </header>
 
-      {/* Hero Section */}
       <section className="hero" data-aos="zoom-in">
         <div className="hero-content">
           <Lottie animationData={dev} className="hero-lottie" />
@@ -181,10 +160,12 @@ function Home() {
               <Cursor cursorStyle="|" />
             </span>
           </p>
+          <button className="watch-demo-btn" onClick={openVideoModal}>
+            Watch Demo
+          </button>
         </div>
       </section>
 
-      {/* Skills Section */}
       <section className="section dark-section" data-aos="fade-up">
         <h2>Skills</h2>
         <ul className="skills-grid">
@@ -196,7 +177,6 @@ function Home() {
         </ul>
       </section>
 
-      {/* Academic Career */}
       <section className="section" data-aos="fade-up">
         <h2>Academic Career</h2>
         <ul className="timeline">
@@ -212,7 +192,6 @@ function Home() {
         </ul>
       </section>
 
-      {/* Projects */}
       <section className="section dark-section" data-aos="zoom-in">
         <h2>My Projects</h2>
         <ul className="project-list">
@@ -234,7 +213,6 @@ function Home() {
         </ul>
       </section>
 
-      {/* Work Experience */}
       <section className="section" data-aos="zoom-out">
         <h2>Work Experience</h2>
         <ul className="timeline">
@@ -249,7 +227,6 @@ function Home() {
         </ul>
       </section>
 
-      {/* Social Life */}
       <section className="section dark-section" data-aos="fade-up">
         <h2>Social Life</h2>
         <ul className="social-list">
@@ -261,7 +238,6 @@ function Home() {
         </ul>
       </section>
 
-      {/* Graphic Design Library Section */}
       <section className="section graphic-section" data-aos="fade-up">
         <h2>Graphic Design Library</h2>
         <div className="graphic-library">
@@ -282,7 +258,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Languages Section */}
       <section className="section dark-section" data-aos="fade-up">
          <h2>Languages</h2>
         <ul className="languages-list">
@@ -305,8 +280,6 @@ function Home() {
   </ul>
 </section>
 
-
-      {/* Contact Info */}
       <section className="section contact-section" data-aos="fade-up">
         <h2>Contact</h2>
         <ul className="contact-list">
@@ -331,7 +304,20 @@ function Home() {
         </ul>
       </section>
 
-      {/* Modal */}
+      {showVideoModal && (
+        <div className="modal-overlay" onClick={closeVideoModal}>
+          <div className="modal-content video-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeVideoModal} aria-label="Close video modal">
+              &times;
+            </button>
+            <video controls autoPlay>
+              <source src="./components/video/vid1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      )}
+
       {modalData && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
