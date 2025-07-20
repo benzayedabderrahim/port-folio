@@ -47,6 +47,14 @@ function Home() {
 const projects = [
   {
     icon: faBriefcase,
+    title: 'Re\'Vision App',
+    description: 'Simple analyzing youtube videos app using Python and ReactJS.',
+    link: 'https://github.com/benzayedabderrahim/ReVisionApp--Frontend-.git',
+    external: true,
+    video: require('./components/video/rev.mp4')
+  },
+  {
+    icon: faBriefcase,
     title: 'End of Studies Project',
     description: 'Marketplace platform for agriculture: products, land, and community.',
     link: '/projects/marketplace',
