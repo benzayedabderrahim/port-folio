@@ -59,7 +59,7 @@ const projects = [
     description: 'Simple Euro/TND converter. Built with React and Bootstrap.',
     link: 'https://github.com/benzayedabderrahim/CurrencyConvertor',
     external: true,
-    video: require('./components/video/vid1.mp4')
+    video: require('./components/video/currconv.mp4')
   },
 ];
   const workExperience = [
