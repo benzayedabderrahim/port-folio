@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/navbar';
 import { NavLink } from 'react-router-dom';
 import Lottie from 'lottie-react';
@@ -6,18 +6,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './css style/css.css';
-
 import dev from './dev.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faUserFriends,
-  faGraduationCap,
-  faCertificate,
-  faBriefcase,
-  faPeopleGroup,
-  faCrown,
-} from '@fortawesome/free-solid-svg-icons';
-
+import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown } from '@fortawesome/free-solid-svg-icons';
 import { Typewriter, Cursor } from 'react-simple-typewriter';
 
 function Home() {
@@ -49,26 +40,15 @@ function Home() {
   ];
 
   const academicCareer = [
-    {
-      icon: faCertificate,
-      year: '2021',
-      title: 'Baccalaureate',
-      description: 'Economics and Management',
-    },
-    {
-      icon: faGraduationCap,
-      year: '2021-2024',
-      title: 'Bachelor Degree in Business Computing',
-      description: 'Higher Institute of Management, Gabes',
-    },
+    { icon: faCertificate, year: '2021', title: 'Baccalaureate', description: 'Economics and Management' },
+    { icon: faGraduationCap, year: '2021-2024', title: 'Bachelor Degree in Business Computing', description: 'Higher Institute of Management, Gabes' },
   ];
 
   const projects = [
     {
       icon: faBriefcase,
       title: 'End of Studies Project',
-      description:
-        'Marketplace platform for agriculture: products, land, and community. Built with Node.js, React, MySQL, Bootstrap.',
+      description: 'Marketplace platform for agriculture: products, land, and community. Built with Node.js, React, MySQL, Bootstrap.',
       link: '/projects/marketplace',
       external: false,
     },
@@ -85,16 +65,7 @@ function Home() {
     {
       icon: faBriefcase,
       year: '2022',
-      description: (
-        <>
-          Summer Internship at{' '}
-          <a href="https://www.tunisietelecom.tn/particulier/" target="_blank" rel="noopener noreferrer">
-            Tunisie Télécom
-          </a>
-          <br />
-          Focused on website development using Angular & NodeJS, network management, and fiber optics.
-        </>
-      ),
+      description: <>Summer Internship at <a href="https://www.tunisietelecom.tn/particulier/" target="_blank" rel="noopener noreferrer">Tunisie Télécom</a><br />Focused on website development using Angular & NodeJS, network management, and fiber optics.</>,
     },
     {
       icon: faBriefcase,
@@ -105,9 +76,11 @@ function Home() {
 
   const socialLife = [
     {
-      icon: faPeopleGroup,
-      description: 'Participant, Sm\'art Hackathon, Gabes (Dec 2023)',
+      icon: faUserFriends,
+      description: <>Chief of Robotics Department, <a href="https://www.facebook.com/CubresClub" target="_blank" rel="noopener noreferrer">CUBERS Club</a> (2021–2024)</>,
     },
+    { icon: faPeopleGroup, description: 'Participant, Sm\'art Hackathon, Gabes (Dec 2023)' },
+    { icon: faCrown, description: <>President, <a href="https://www.facebook.com/CubresClub" target="_blank" rel="noopener noreferrer">CUBERS Club</a> (2024–Now)</> },
   ];
 
   const openModal = (item) => {
@@ -132,27 +105,19 @@ function Home() {
 
   return (
     <>
-      <header>
-        <Navbar />
-      </header>
+      <header><Navbar /></header>
 
       <section className="hero" data-aos="zoom-in">
         <div className="hero-content">
           <Lottie animationData={dev} className="hero-lottie" />
           <img src={require('./pics/profile.png')} alt="Abderrahim" className="profile-pic" />
-          <h1>
-            Hello <span className="highlight">Everyone!</span>
-          </h1>
+          <h1>Hello <span className="highlight">Everyone!</span></h1>
           <h2>I'm Abderrahim BENZAYED</h2>
           <p className="typewriter">
             I'm an IT specialist with&nbsp;
             <span className="typing">
               <Typewriter
-                words={[
-                  'a Bachelor degree in Business Computing',
-                  'experience in many projects',
-                  'social event participation',
-                ]}
+                words={['a Bachelor degree in Business Computing', 'experience in many projects', 'social event participation']}
                 loop={true}
                 typeSpeed={60}
                 deleteSpeed={40}
@@ -160,9 +125,6 @@ function Home() {
               <Cursor cursorStyle="|" />
             </span>
           </p>
-          <button className="watch-demo-btn" onClick={openVideoModal}>
-            Watch Demo
-          </button>
         </div>
       </section>
 
@@ -170,9 +132,7 @@ function Home() {
         <h2>Skills</h2>
         <ul className="skills-grid">
           {skills.map((skill, index) => (
-            <li key={index}>
-              <i className={skill.icon}></i> {skill.text}
-            </li>
+            <li key={index}><i className={skill.icon}></i> {skill.text}</li>
           ))}
         </ul>
       </section>
@@ -183,10 +143,7 @@ function Home() {
           {academicCareer.map((item, index) => (
             <li key={index}>
               <FontAwesomeIcon icon={item.icon} />
-              <div>
-                <strong>{item.year}</strong>: {item.title} <br />
-                <span>{item.description}</span>
-              </div>
+              <div><strong>{item.year}</strong>: {item.title} <br /><span>{item.description}</span></div>
             </li>
           ))}
         </ul>
@@ -200,9 +157,7 @@ function Home() {
               <FontAwesomeIcon icon={proj.icon} />
               <h4>
                 {proj.external ? (
-                  <a href={proj.link} target="_blank" rel="noopener noreferrer">
-                    {proj.title}
-                  </a>
+                  <a href={proj.link} target="_blank" rel="noopener noreferrer">{proj.title}</a>
                 ) : (
                   <NavLink to={proj.link}>{proj.title}</NavLink>
                 )}
@@ -211,6 +166,12 @@ function Home() {
             </li>
           ))}
         </ul>
+        <div className="demo-btn-container">
+          <button className="demo-btn" onClick={openVideoModal}>
+            <span className="btn-icon">▶</span>
+            <span className="btn-text">Watch Demo</span>
+          </button>
+        </div>
       </section>
 
       <section className="section" data-aos="zoom-out">
@@ -219,9 +180,7 @@ function Home() {
           {workExperience.map((work, index) => (
             <li key={index}>
               <FontAwesomeIcon icon={work.icon} /> 
-              <div>
-                <strong>{work.year}</strong>: {work.description}
-              </div>
+              <div><strong>{work.year}</strong>: {work.description}</div>
             </li>
           ))}
         </ul>
@@ -242,15 +201,7 @@ function Home() {
         <h2>Graphic Design Library</h2>
         <div className="graphic-library">
           {graphicItems.map((item, index) => (
-            <div
-              className="graphic-item"
-              key={index}
-              data-aos="zoom-in"
-              onClick={() => openModal(item)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && openModal(item)}
-            >
+            <div className="graphic-item" key={index} data-aos="zoom-in" onClick={() => openModal(item)} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && openModal(item)}>
               <img src={item.src} alt={item.title} className="graphic-img" />
               <p>{item.title}</p>
             </div>
@@ -259,57 +210,29 @@ function Home() {
       </section>
 
       <section className="section dark-section" data-aos="fade-up">
-         <h2>Languages</h2>
+        <h2>Languages</h2>
         <ul className="languages-list">
-         <li>
-          <img src={require('./pics/ar.png')}  alt="Tunisian Flag" className="flag-icon" />
-          Arabic – Fluent (Mother Language)
-         </li>
-         <li>
-           <img src={require('./pics/en.png')}  alt="UK Flag" className="flag-icon" />
-          English – Excellent
-          </li>
-         <li>
-         <img src={require('./pics/fr.png')}  alt="French Flag" className="flag-icon" />
-      French – Intermediate
-    </li>        
-         <li>
-           <img src={require('./pics/gr.png')}  alt="German Flag" className="flag-icon" />
-         German – Beginner
-        </li>
-  </ul>
-</section>
+          <li><img src={require('./pics/ar.png')} alt="Tunisian Flag" className="flag-icon" />Arabic – Fluent (Mother Language)</li>
+          <li><img src={require('./pics/en.png')} alt="UK Flag" className="flag-icon" />English – Excellent</li>
+          <li><img src={require('./pics/fr.png')} alt="French Flag" className="flag-icon" />French – Intermediate</li>
+          <li><img src={require('./pics/gr.png')} alt="German Flag" className="flag-icon" />German – Beginner</li>
+        </ul>
+      </section>
 
       <section className="section contact-section" data-aos="fade-up">
         <h2>Contact</h2>
         <ul className="contact-list">
-          <li>
-            <i className="fas fa-envelope"></i> benzayedabderrahim@gmail.com
-          </li>
-          <li>
-            <i className="fab fa-whatsapp"></i> +216 29 200 623
-          </li>
-          <li>
-            <i className="fab fa-linkedin"></i>{' '}
-            <a href="https://www.linkedin.com/in/abderrahim-benzayed-b4694a234/" target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <i className="fab fa-github"></i>{' '}
-            <a href="https://github.com/benzayedabderrahim" target="_blank" rel="noopener noreferrer">
-              GitHub
-            </a>
-          </li>
+          <li><i className="fas fa-envelope"></i> benzayedabderrahim@gmail.com</li>
+          <li><i className="fab fa-whatsapp"></i> +216 29 200 623</li>
+          <li><i className="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/abderrahim-benzayed-b4694a234/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><i className="fab fa-github"></i> <a href="https://github.com/benzayedabderrahim" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         </ul>
       </section>
 
       {showVideoModal && (
         <div className="modal-overlay" onClick={closeVideoModal}>
           <div className="modal-content video-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeVideoModal} aria-label="Close video modal">
-              &times;
-            </button>
+            <button className="modal-close" onClick={closeVideoModal} aria-label="Close video modal">&times;</button>
             <video controls autoPlay>
               <source src="./components/video/vid1.mp4" type="video/mp4" />
               Your browser does not support the video tag.
@@ -321,9 +244,7 @@ function Home() {
       {modalData && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeModal} aria-label="Close modal">
-              &times;
-            </button>
+            <button className="modal-close" onClick={closeModal} aria-label="Close modal">&times;</button>
             <img src={modalData.src} alt={modalData.title} />
             <h3>{modalData.title}</h3>
             <p>{modalData.description}</p>
