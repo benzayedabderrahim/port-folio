@@ -228,7 +228,7 @@ const closeVideoModal = () => {
       </section>
 
       <section className="section contact-section" data-aos="fade-up">
-        <h2>Contact</h2>
+        <h2>Contact Me</h2>
         <ul className="contact-list">
           <li><i className="fas fa-envelope"></i> benzayedabderrahim@gmail.com</li>
           <li><i className="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/abderrahim-benzayed-b4694a234/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
