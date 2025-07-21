@@ -10,6 +10,7 @@ import dev from './dev.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown } from '@fortawesome/free-solid-svg-icons';
 import { Typewriter, Cursor } from 'react-simple-typewriter';
+import Footer from './components/footer';
 
 function Home() {
   const [modalData, setModalData] = useState(null);
@@ -128,7 +129,7 @@ const closeVideoModal = () => {
             I'm an IT specialist with&nbsp;
             <span className="typing">
               <Typewriter
-                words={['a Bachelor degree in Business Computing', 'experience in many projects', 'social event participation']}
+                words={['Bachelor in Business Computing', 'experience in many projects', 'social events participation']}
                 loop={true}
                 typeSpeed={60}
                 deleteSpeed={40}
@@ -268,6 +269,7 @@ const closeVideoModal = () => {
           </div>
         </div>
       )}
+      <Footer />
     </>
   );
 }
