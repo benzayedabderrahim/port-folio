@@ -35,6 +35,7 @@ function Home() {
     { icon: 'fas fa-database', text: 'MySQL' },
     { icon: 'fab fa-node-js', text: 'NodeJS' },
     { icon: 'fab fa-react', text: 'ReactJS' },
+    { icon: 'fab fa-angular', text: 'AngularJS' },
     { icon: 'fab fa-python', text: 'Django' },
     { icon: 'fa-solid fa-palette', text: 'Graphic Design' },
     { icon: 'fa-solid fa-file-video', text: 'Video Editing' },
