@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown } from '@fortawesome/free-solid-svg-icons';
 import { Typewriter, Cursor } from 'react-simple-typewriter';
 import Footer from './components/footer';
+import CVDownloadSection from './components/CVDownloadSection';
 
 function Home() {
   const [modalData, setModalData] = useState(null);
@@ -270,6 +271,39 @@ const closeVideoModal = () => {
           </div>
         </div>
       )}
+
+     <CVDownloadSection
+  cvData={{
+    skills: skills.map(s => s.text),
+    academicCareer: academicCareer.map(c => ({
+      year: c.year,
+      title: c.title,
+      description: c.description
+    })),
+    projects: projects.map(p => ({
+      title: p.title,
+      description: p.description
+    })),
+    workExperience: workExperience.map(w => ({
+      year: w.year,
+      description: typeof w.description === 'string' ? w.description : '' // convert JSX to plain text
+    })),
+    socialLife: socialLife.map(s => ({
+      description: typeof s.description === 'string' ? s.description : '' // JSX to plain text
+    })),
+    languages: [
+      'Arabic – Fluent (Mother Language)',
+      'English – Excellent',
+      'French – Intermediate',
+      'German – Beginner'
+    ],
+    contactEmail: 'benzayedabderrahim@gmail.com',
+    contactLinkedIn: 'https://www.linkedin.com/in/abderrahim-benzayed-b4694a234/',
+    contactGitHub: 'https://github.com/benzayedabderrahim'
+  }}
+/>
+
+
       <Footer />
     </>
   );

@@ -1,8 +1,11 @@
+
 const express = require('express');
-const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
-const serviceAccount = require('./message.json');
 const cors = require('cors');
+const puppeteer = require('puppeteer');
+const ejs = require('ejs');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const port = 3002;
@@ -10,37 +13,33 @@ const port = 3002;
 app.use(bodyParser.json());
 app.use(cors());
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://message-3c541-default-rtdb.firebaseio.com'
-});
+app.post('/generate-cv', async (req, res) => {
+  const { profileType, ...cvData } = req.body;
 
-const db = admin.database();
+  const templateName = profileType === 'ats' ? 'ats.html' : 'modern.html';
+  const templatePath = path.join(__dirname, 'templates', templateName);
 
-console.log('Database connected successfully');
+  try {
+    const htmlContent = fs.readFileSync(templatePath, 'utf8');
+    const renderedHtml = ejs.render(htmlContent, cvData);
 
-app.get('/download-cv', (req, res) => {
-  const filePath = path.join(__dirname, 'public', 'cv.pdf');
-  res.download(filePath, 'Your-CV.pdf', (err) => {
-      if (err) {
-          console.error('Error downloading the file:', err);
-          res.status(500).send('Could not download the file.');
-      }
-  });
-});
-app.post('/writeMessage', (req, res) => {
-  const { firstName, lastName, country, subject } = req.body;
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.setContent(renderedHtml, { waitUntil: 'networkidle0' });
 
-  db.ref('message').push({
-    sender: firstName,
-    sendersurname: lastName,
-    country: country,
-    text: subject
-  })
-  .then(() => res.send('Message written successfully'))
-  .catch(error => res.status(500).send(error));
+    const pdfBuffer = await page.pdf({ format: 'A4' });
+
+    await browser.close();
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="cv-${profileType}.pdf"`);
+    res.send(pdfBuffer);
+  } catch (err) {
+    console.error('CV Generation Error:', err);
+    res.status(500).send('Failed to generate CV');
+  }
 });
 
 app.listen(port, () => {
-  console.log(`App is running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
