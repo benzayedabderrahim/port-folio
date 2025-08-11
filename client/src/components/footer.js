@@ -28,7 +28,7 @@ function Footer() {
             title="GitHub"
           >
             <FontAwesomeIcon icon={faGithub} />
-            {/* account for GitHub */}
+            {/* account for GitHub is here */}
           </a>
         </div>
       </div>
