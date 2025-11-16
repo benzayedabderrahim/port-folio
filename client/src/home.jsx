@@ -9,7 +9,7 @@ import './css style/css.css';
 import dev from './dev.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown, faDownload, faPlay, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Typewriter } from 'react-simple-typewriter';
+import { Typewriter, Cursor } from 'react-simple-typewriter';
 import Footer from './components/footer';
 import ChatBot from './components/chatbot';
 
@@ -198,6 +198,7 @@ function Home() {
                 typeSpeed={60}
                 deleteSpeed={40}
               />
+              <Cursor cursorStyle="|" />
             </span>
           </p>
           
@@ -209,10 +210,6 @@ function Home() {
               View My Work
             </button>
           </div>
-        </div>
-        
-        <div className="scroll-indicator">
-          <div className="scroll-arrow"></div>
         </div>
       </section>
 
