@@ -8,7 +8,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import './css style/css.css';
 import dev from './dev.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown } from '@fortawesome/free-solid-svg-icons';
+import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown, faDownload, faPlay, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Typewriter, Cursor } from 'react-simple-typewriter';
 import Footer from './components/footer';
 import CVDownloadSection from './components/CVDownloadSection';
@@ -16,9 +16,32 @@ import CVDownloadSection from './components/CVDownloadSection';
 function Home() {
   const [modalData, setModalData] = useState(null);
   const [showVideoModal, setShowVideoModal] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ 
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+      
+      // Section activation logic
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          setActiveSection(section.id);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const graphicItems = [
@@ -30,16 +53,16 @@ function Home() {
   ];
 
   const skills = [
-    { icon: 'fab fa-html5', text: 'HTML' },
-    { icon: 'fab fa-css3-alt', text: 'CSS' },
-    { icon: 'fab fa-js-square', text: 'JavaScript' },
-    { icon: 'fas fa-database', text: 'MySQL' },
-    { icon: 'fab fa-node-js', text: 'NodeJS' },
-    { icon: 'fab fa-react', text: 'ReactJS' },
-    { icon: 'fab fa-angular', text: 'AngularJS' },
-    { icon: 'fab fa-python', text: 'Django' },
-    { icon: 'fa-solid fa-palette', text: 'Graphic Design' },
-    { icon: 'fa-solid fa-file-video', text: 'Video Editing' },
+    { icon: 'fab fa-html5', text: 'HTML', color: '#e34f26' },
+    { icon: 'fab fa-css3-alt', text: 'CSS', color: '#1572b6' },
+    { icon: 'fab fa-js-square', text: 'JavaScript', color: '#f7df1e' },
+    { icon: 'fas fa-database', text: 'MySQL', color: '#4479a1' },
+    { icon: 'fab fa-node-js', text: 'NodeJS', color: '#339933' },
+    { icon: 'fab fa-react', text: 'ReactJS', color: '#61dafb' },
+    { icon: 'fab fa-angular', text: 'AngularJS', color: '#dd0031' },
+    { icon: 'fab fa-python', text: 'Django', color: '#fbff02ff' },
+    { icon: 'fa-solid fa-palette', text: 'Graphic Design', color: '#ff6b6b' },
+    { icon: 'fa-solid fa-file-video', text: 'Video Editing', color: '#4ecdc4' },
   ];
 
   const academicCareer = [
@@ -47,52 +70,68 @@ function Home() {
     { icon: faGraduationCap, year: '2021-2024', title: 'Bachelor Degree in Business Computing', description: 'Higher Institute of Management, Gabes' },
   ];
 
-const projects = [
-  {
-    icon: faBriefcase,
-    title: 'Re\'Vision App',
-    description: 'Simple analyzing youtube videos app using Google API (YouTube v3) , Django and ReactJS.',
-    link: 'https://github.com/benzayedabderrahim/ReVisionApp--Frontend-.git',
-    external: true,
-    video: require('./components/video/rev.mp4')
-  },
-  {
-    icon: faBriefcase,
-    title: 'End of Studies Project',
-    description: 'Marketplace platform for agriculture: products, land, and community. Built with ReactJS , NodeJS and MySQL',
-    link: '/projects/marketplace',
-    external: false,
-    video: require('./components/video/vid1.mp4')
-  },
-  {
-    icon: faBriefcase,
-    title: 'Currency Converter',
-    description: 'Simple currency converter. Built with HTML & JavaScript',
-    link: 'https://github.com/benzayedabderrahim/CurrencyConvertor',
-    external: true,
-    video: require('./components/video/currconv.mp4')
-  },
-];
+  const projects = [
+    {
+      icon: faBriefcase,
+      title: 'Re\'Vision App',
+      description: 'Simple analyzing youtube videos app using Google API (YouTube v3) , Django and ReactJS.',
+      link: 'https://github.com/benzayedabderrahim/ReVisionApp--Frontend-.git',
+      external: true,
+      video: require('./components/video/rev.mp4'),
+      tags: ['React', 'Django', 'API']
+    },
+    {
+      icon: faBriefcase,
+      title: 'End of Studies Project',
+      description: 'Marketplace platform for agriculture: products, land, and community. Built with ReactJS , NodeJS and MySQL',
+      link: '/projects/marketplace',
+      external: false,
+      video: require('./components/video/vid1.mp4'),
+      tags: ['React', 'Node.js', 'MySQL']
+    },
+    {
+      icon: faBriefcase,
+      title: 'Currency Converter',
+      description: 'Simple currency converter. Built with HTML & JavaScript',
+      link: 'https://github.com/benzayedabderrahim/CurrencyConvertor',
+      external: true,
+      video: require('./components/video/currconv.mp4'),
+      tags: ['HTML', 'JavaScript']
+    },
+  ];
+
   const workExperience = [
     {
       icon: faBriefcase,
       year: '2022',
-      description: <>Summer Internship at <a href="https://www.tunisietelecom.tn/particulier/" target="_blank" rel="noopener noreferrer">Tunisie Télécom</a><br />Focused on website development using Angular & NodeJS, network management, and fiber optics.</>,
+      company: 'Tunisie Télécom',
+      description: 'Summer Internship focused on website development using Angular & NodeJS, network management, and fiber optics.',
+      link: 'https://www.tunisietelecom.tn/particulier/'
     },
     {
       icon: faBriefcase,
       year: '2023',
-      description: 'Summer Internship at the same company. Enhanced skills in database management and full-stack development.',
+      company: 'Tunisie Télécom',
+      description: 'Summer Internship enhancing skills in database management and full-stack development.',
     },
   ];
 
   const socialLife = [
     {
       icon: faUserFriends,
-      description: <>Member <a href="https://www.facebook.com/CubresClub" target="_blank" rel="noopener noreferrer">CUBERS Club</a> (2021–2024)</>,
+      description: 'Member CUBERS Club (2021–2024)',
+      link: 'https://www.facebook.com/CubresClub'
     },
-    { icon: faPeopleGroup, description: 'Participant, Sm\'art Hackathon, Gabes (Dec 2023)' },
-    { icon: faCrown, description: <>President, <a href="https://www.facebook.com/CubresClub" target="_blank" rel="noopener noreferrer">CUBERS Club</a> (July 2024 – Juin 2025 )</> },
+    { 
+      icon: faPeopleGroup, 
+      description: 'Participant, Sm\'art Hackathon, Gabes (Dec 2023)',
+      link: null
+    },
+    { 
+      icon: faCrown, 
+      description: 'President, CUBERS Club (July 2024 – June 2025)',
+      link: 'https://www.facebook.com/CubresClub'
+    },
   ];
 
   const openModal = (item) => {
@@ -105,28 +144,51 @@ const projects = [
     document.body.style.overflow = 'auto';
   };
 
-const [currentVideo, setCurrentVideo] = useState(null);
+  const [currentVideo, setCurrentVideo] = useState(null);
 
-const openVideoModal = (videoSrc) => {
-  setCurrentVideo(videoSrc);
-  document.body.style.overflow = 'hidden';
-};
+  const openVideoModal = (videoSrc) => {
+    setCurrentVideo(videoSrc);
+    document.body.style.overflow = 'hidden';
+  };
 
-const closeVideoModal = () => {
-  setCurrentVideo(null);
-  document.body.style.overflow = 'auto';
-};
+  const closeVideoModal = () => {
+    setCurrentVideo(null);
+    document.body.style.overflow = 'auto';
+  };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <>
-      <header><Navbar /></header>
+      <header>
+        <Navbar activeSection={activeSection} isScrolled={isScrolled} />
+      </header>
 
-      <section className="hero" data-aos="zoom-in">
+      <section id="home" className="hero" data-aos="zoom-in">
+        <div className="hero-background">
+          <div className="floating-shapes">
+            <div className="shape shape-1"></div>
+            <div className="shape shape-2"></div>
+            <div className="shape shape-3"></div>
+          </div>
+        </div>
+        
         <div className="hero-content">
-          <Lottie animationData={dev} className="hero-lottie" />
-          <img src={require('./pics/profile.png')} alt="Abderrahim" className="profile-pic" />
+          <div className="profile-container">
+            <Lottie animationData={dev} className="hero-lottie" />
+            <div className="profile-image-wrapper">
+              <img src={require('./pics/profile.png')} alt="Abderrahim" className="profile-pic" />
+              <div className="profile-glow"></div>
+            </div>
+          </div>
+          
           <h1>Hello <span className="highlight">Everyone!</span></h1>
-          <h2>I'm Abderrahim BENZAYED</h2>
+          <h2>I'm <span className="name-gradient">Abderrahim BENZAYED</span></h2>
           <p className="typewriter">
             I'm an IT specialist with&nbsp;
             <span className="typing">
@@ -139,171 +201,260 @@ const closeVideoModal = () => {
               <Cursor cursorStyle="|" />
             </span>
           </p>
+          
+          <div className="hero-buttons">
+            <button 
+              className="btn-primary"
+              onClick={() => scrollToSection('projects')}
+            >
+              View My Work
+            </button>
+          </div>
+        </div>
+        
+        <div className="scroll-indicator">
+          <div className="scroll-arrow"></div>
         </div>
       </section>
 
-      <section className="section dark-section" data-aos="fade-up">
-        <h2>Skills</h2>
-        <ul className="skills-grid">
+      <section id="skills" className="section dark-section" data-aos="fade-up">
+        <div className="section-header">
+          <h2>Skills & Technologies</h2>
+          <p>Technologies I've worked with</p>
+        </div>
+        <div className="skills-grid">
           {skills.map((skill, index) => (
-            <li key={index}><i className={skill.icon}></i> {skill.text}</li>
+            <div 
+              key={index} 
+              className="skill-card"
+              style={{ '--skill-color': skill.color }}
+            >
+              <div className="skill-icon">
+                <i className={skill.icon}></i>
+              </div>
+              <span className="skill-text">{skill.text}</span>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
-      <section className="section" data-aos="fade-up">
-        <h2>Academic Career</h2>
-        <ul className="timeline">
+      <section id="academic" className="section" data-aos="fade-up">
+        <div className="section-header">
+          <h2>Academic Career</h2>
+          <p>My educational journey</p>
+        </div>
+        <div className="timeline">
           {academicCareer.map((item, index) => (
-            <li key={index}>
-              <FontAwesomeIcon icon={item.icon} />
-              <div><strong>{item.year}</strong>: {item.title} <br /><span>{item.description}</span></div>
-            </li>
+            <div key={index} className="timeline-item">
+              <div className="timeline-marker">
+                <FontAwesomeIcon icon={item.icon} />
+              </div>
+              <div className="timeline-content">
+                <div className="timeline-year">{item.year}</div>
+                <h4>{item.title}</h4>
+                <p>{item.description}</p>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
-          <section className="section dark-section" data-aos="zoom-in">
-              <h2>My Projects</h2>
-              <ul className="project-list">
-                {projects.map((proj, index) => (
-                  <li key={index}>
-                    <FontAwesomeIcon icon={proj.icon} />
-                    <h4>
-                      {proj.external ? (
-                        <a href={proj.link} target="_blank" rel="noopener noreferrer">
-                          {proj.title}
-                        </a>
-                      ) : (
-                        <NavLink to={proj.link}>{proj.title}</NavLink>
-                      )}
-                    </h4>
-                    <p>{proj.description}</p>
-                    {proj.video && (
-                      <button 
-                        className="demo-btn" 
-                        onClick={() => openVideoModal(proj.video)}
-                      >
-                        <span className="btn-icon">▶</span>
-                        <span className="btn-text">View Demo</span>
-                      </button>
-                    )}
-                  </li>
+      <section id="projects" className="section dark-section" data-aos="zoom-in">
+        <div className="section-header">
+          <h2>My Projects</h2>
+          <p>Some of my recent work</p>
+        </div>
+        <div className="projects-grid">
+          {projects.map((proj, index) => (
+            <div key={index} className="project-card">
+              <div className="project-header">
+                <FontAwesomeIcon icon={proj.icon} className="project-icon" />
+                <h4>
+                  {proj.external ? (
+                    <a href={proj.link} target="_blank" rel="noopener noreferrer">
+                      {proj.title}
+                    </a>
+                  ) : (
+                    <NavLink to={proj.link}>{proj.title}</NavLink>
+                  )}
+                </h4>
+              </div>
+              <p>{proj.description}</p>
+              <div className="project-tags">
+                {proj.tags.map((tag, tagIndex) => (
+                  <span key={tagIndex} className="project-tag">{tag}</span>
                 ))}
-              </ul>
-            </section>
+              </div>
+              {proj.video && (
+                <button 
+                  className="demo-btn" 
+                  onClick={() => openVideoModal(proj.video)}
+                >
+                  <FontAwesomeIcon icon={faPlay} className="btn-icon" />
+                  <span className="btn-text">View Demo</span>
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
 
-      <section className="section" data-aos="zoom-out">
-        <h2>Work Experience</h2>
-        <ul className="timeline">
+      <section id="experience" className="section" data-aos="zoom-out">
+        <div className="section-header">
+          <h2>Work Experience</h2>
+          <p>My professional journey</p>
+        </div>
+        <div className="experience-timeline">
           {workExperience.map((work, index) => (
-            <li key={index}>
-              <FontAwesomeIcon icon={work.icon} /> 
-              <div><strong>{work.year}</strong>: {work.description}</div>
-            </li>
+            <div key={index} className="experience-item">
+              <div className="experience-year">{work.year}</div>
+              <div className="experience-content">
+                <FontAwesomeIcon icon={work.icon} className="experience-icon" />
+                <div>
+                  <h4>
+                    {work.link ? (
+                      <a href={work.link} target="_blank" rel="noopener noreferrer">
+                        {work.company}
+                      </a>
+                    ) : (
+                      work.company
+                    )}
+                  </h4>
+                  <p>{work.description}</p>
+                </div>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
-      <section className="section dark-section" data-aos="fade-up">
-        <h2>Social Life</h2>
-        <ul className="social-list">
+      <section id="social" className="section dark-section" data-aos="fade-up">
+        <div className="section-header">
+          <h2>Social Life</h2>
+          <p>Community involvement</p>
+        </div>
+        <div className="social-grid">
           {socialLife.map((item, index) => (
-            <li key={index}>
-              <FontAwesomeIcon icon={item.icon} /> {item.description}
-            </li>
+            <div key={index} className="social-card">
+              <FontAwesomeIcon icon={item.icon} className="social-icon" />
+              <p>
+                {item.link ? (
+                  <a href={item.link} target="_blank" rel="noopener noreferrer">
+                    {item.description}
+                  </a>
+                ) : (
+                  item.description
+                )}
+              </p>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
-      <section className="section graphic-section" data-aos="fade-up">
-        <h2>Graphic Design Library</h2>
+      <section id="graphic" className="section graphic-section" data-aos="fade-up">
+        <div className="section-header">
+          <h2>Graphic Design Library</h2>
+          <p>My creative designs</p>
+        </div>
         <div className="graphic-library">
           {graphicItems.map((item, index) => (
-            <div className="graphic-item" key={index} data-aos="zoom-in" onClick={() => openModal(item)} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && openModal(item)}>
-              <img src={item.src} alt={item.title} className="graphic-img" />
+            <div 
+              className="graphic-item" 
+              key={index} 
+              data-aos="zoom-in" 
+              onClick={() => openModal(item)} 
+              role="button" 
+              tabIndex={0} 
+              onKeyDown={(e) => e.key === 'Enter' && openModal(item)}
+            >
+              <div className="graphic-image-container">
+                <img src={item.src} alt={item.title} className="graphic-img" />
+                <div className="graphic-overlay">
+                  <span>View Details</span>
+                </div>
+              </div>
               <p>{item.title}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="section dark-section" data-aos="fade-up">
-        <h2>Languages</h2>
-        <ul className="languages-list">
-          <li><img src={require('./pics/ar.png')} alt="Tunisian Flag" className="flag-icon" />Arabic – Fluent (Mother Language)</li>
-          <li><img src={require('./pics/en.png')} alt="UK Flag" className="flag-icon" />English – Excellent</li>
-          <li><img src={require('./pics/fr.png')} alt="French Flag" className="flag-icon" />French – Intermediate</li>
-          <li><img src={require('./pics/gr.png')} alt="German Flag" className="flag-icon" />German – Beginner</li>
-        </ul>
-      </section>
-
-      <section className="section contact-section" data-aos="fade-up">
-        <h2>Contact Me</h2>
-        <ul className="contact-list">
-          <li><i className="fas fa-envelope"></i> benzayedabderrahim@gmail.com</li>
-          <li><i className="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/abderrahim-benzayed-b4694a234/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-          <li><i className="fab fa-github"></i> <a href="https://github.com/benzayedabderrahim" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        </ul>
-      </section>
-
-        {currentVideo && (
-          <div className="modal-overlay" onClick={closeVideoModal}>
-            <div className="modal-content video-modal" onClick={(e) => e.stopPropagation()}>
-              <button className="modal-close" onClick={closeVideoModal}>
-                &times;
-              </button>
-              <video controls autoPlay muted key={currentVideo}>
-                <source src={currentVideo} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+      <section id="languages" className="section dark-section" data-aos="fade-up">
+        <div className="section-header">
+          <h2>Languages</h2>
+          <p>Languages I speak</p>
+        </div>
+        <div className="languages-grid">
+          <div className="language-item">
+            <img src={require('./pics/ar.png')} alt="Arabic" className="flag-icon" />
+            <div className="language-info">
+              <span className="language-name">Arabic</span>
+              <span className="language-level">Fluent (Native)</span>
+            </div>
+            <div className="language-progress">
+              <div className="progress-bar" style={{width: '100%'}}></div>
             </div>
           </div>
-        )}
+          <div className="language-item">
+            <img src={require('./pics/en.png')} alt="English" className="flag-icon" />
+            <div className="language-info">
+              <span className="language-name">English</span>
+              <span className="language-level">Excellent</span>
+            </div>
+            <div className="language-progress">
+              <div className="progress-bar" style={{width: '90%'}}></div>
+            </div>
+          </div>
+          <div className="language-item">
+            <img src={require('./pics/fr.png')} alt="French" className="flag-icon" />
+            <div className="language-info">
+              <span className="language-name">French</span>
+              <span className="language-level">Intermediate</span>
+            </div>
+            <div className="language-progress">
+              <div className="progress-bar" style={{width: '70%'}}></div>
+            </div>
+          </div>
+          <div className="language-item">
+            <img src={require('./pics/gr.png')} alt="German" className="flag-icon" />
+            <div className="language-info">
+              <span className="language-name">German</span>
+              <span className="language-level">Beginner</span>
+            </div>
+            <div className="language-progress">
+              <div className="progress-bar" style={{width: '30%'}}></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {currentVideo && (
+        <div className="modal-overlay" onClick={closeVideoModal}>
+          <div className="modal-content video-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeVideoModal}>
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
+            <video controls autoPlay muted key={currentVideo}>
+              <source src={currentVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      )}
 
       {modalData && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeModal} aria-label="Close modal">&times;</button>
+            <button className="modal-close" onClick={closeModal} aria-label="Close modal">
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
             <img src={modalData.src} alt={modalData.title} />
             <h3>{modalData.title}</h3>
             <p>{modalData.description}</p>
           </div>
         </div>
       )}
-
-     <CVDownloadSection
-  cvData={{
-    skills: skills.map(s => s.text),
-    academicCareer: academicCareer.map(c => ({
-      year: c.year,
-      title: c.title,
-      description: c.description
-    })),
-    projects: projects.map(p => ({
-      title: p.title,
-      description: p.description
-    })),
-    workExperience: workExperience.map(w => ({
-      year: w.year,
-      description: typeof w.description === 'string' ? w.description : '' // convert JSX to plain text
-    })),
-    socialLife: socialLife.map(s => ({
-      description: typeof s.description === 'string' ? s.description : '' // JSX to plain text
-    })),
-    languages: [
-      'Arabic – Fluent (Mother Language)',
-      'English – Excellent',
-      'French – Intermediate',
-      'German – Beginner'
-    ],
-    contactEmail: 'benzayedabderrahim@gmail.com',
-    contactLinkedIn: 'https://www.linkedin.com/in/abderrahim-benzayed-b4694a234/',
-    contactGitHub: 'https://github.com/benzayedabderrahim'
-  }}
-/>
-
-
+      
       <Footer />
     </>
   );
