@@ -6,7 +6,7 @@ import '../css style/css.css';
 
 function Footer() {
   const [isVisible, setIsVisible] = useState(false);
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -30,7 +30,6 @@ function Footer() {
 
   return (
     <>
-      {/* Back to Top Button */}
       {isVisible && (
         <button 
           className="back-to-top" 

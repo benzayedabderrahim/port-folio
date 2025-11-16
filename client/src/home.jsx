@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown, faDownload, faPlay, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Typewriter, Cursor } from 'react-simple-typewriter';
 import Footer from './components/footer';
-import CVDownloadSection from './components/CVDownloadSection';
+import ChatBot from './components/chatbot';
 
 function Home() {
   const [modalData, setModalData] = useState(null);
@@ -454,7 +454,7 @@ function Home() {
           </div>
         </div>
       )}
-      
+      <ChatBot />
       <Footer />
     </>
   );
