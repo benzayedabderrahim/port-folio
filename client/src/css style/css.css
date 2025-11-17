@@ -1,5 +1,10 @@
 /* Enhanced CSS with Creative Design */
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 :root {
   --primary-color: #61dafb;
   --secondary-color: #ff6b6b;
