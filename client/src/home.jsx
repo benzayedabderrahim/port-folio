@@ -103,16 +103,24 @@ function Home() {
   const workExperience = [
     {
       icon: faBriefcase,
-      year: '2022',
-      company: 'Tunisie Télécom',
-      description: 'Summer Internship focused on website development using Angular & NodeJS, network management, and fiber optics.',
-      link: 'https://www.tunisietelecom.tn/particulier/'
+      year: '2024',
+      company: 'Creatix Software Consulting',
+      description: 'Summer Internship enhancing skills in database management and full-stack development using Django , AngularJS and MySQL Workbench.',
+      link: 'https://www.linkedin.com/company/creatix-software-consulting/'    
     },
-    {
+     {
       icon: faBriefcase,
       year: '2023',
       company: 'Tunisie Télécom',
       description: 'Summer Internship enhancing skills in database management and full-stack development.',
+      link: 'https://www.tunisietelecom.tn/particulier/'
+    },
+    {
+      icon: faBriefcase,
+      year: '2022',
+      company: 'Tunisie Télécom',
+      description: 'Summer Internship focused on website development using Angular & NodeJS, network management, and fiber optics.',
+      link: 'https://www.tunisietelecom.tn/particulier/'
     },
   ];
 
