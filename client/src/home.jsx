@@ -8,7 +8,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import './css style/css.css';
 import dev from './dev.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown, faDownload, faPlay, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown, faDownload, faPlay, faXmark, faArrowRight, faCoins } from '@fortawesome/free-solid-svg-icons';
 import { Typewriter, Cursor } from 'react-simple-typewriter';
 import Footer from './components/footer';
 import ChatBot from './components/chatbot';
@@ -28,8 +28,6 @@ function Home() {
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100);
-      
-      // Section activation logic
       const sections = document.querySelectorAll('section');
       sections.forEach(section => {
         const sectionTop = section.offsetTop - 100;
@@ -108,7 +106,7 @@ function Home() {
       description: 'Summer Internship enhancing skills in database management and full-stack development using Django , AngularJS and MySQL Workbench.',
       link: 'https://www.linkedin.com/company/creatix-software-consulting/'    
     },
-     {
+    {
       icon: faBriefcase,
       year: '2023',
       company: 'Tunisie Télécom',
@@ -170,6 +168,21 @@ function Home() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Currency pairs to animate in the teaser card
+  const currencyPairs = [
+    { from: '🇹🇳 TND', to: '🇺🇸 USD', rate: '0.32' },
+    { from: '🇺🇸 USD', to: '🇪🇺 EUR', rate: '0.92' },
+    { from: '🇬🇧 GBP', to: '🇹🇳 TND', rate: '3.88' },
+  ];
+  const [activePair, setActivePair] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActivePair(prev => (prev + 1) % currencyPairs.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -302,6 +315,346 @@ function Home() {
           ))}
         </div>
       </section>
+
+      <section id="currency-tool" className="section currency-teaser-section" data-aos="fade-up">
+        <style>{`
+          .currency-teaser-section {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+          }
+          .currency-teaser-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+            pointer-events: none;
+          }
+          .currency-teaser-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 70%);
+            pointer-events: none;
+          }
+          .currency-teaser-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+          }
+          .currency-teaser-text {
+            flex: 1;
+            min-width: 280px;
+          }
+          .currency-teaser-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            background: rgba(99,102,241,0.15);
+            border: 1px solid rgba(99,102,241,0.35);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #a5b4fc;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+          }
+          .currency-teaser-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #6366f1;
+            box-shadow: 0 0 8px rgba(99,102,241,0.9);
+            animation: ctPulse 2s ease-in-out infinite;
+          }
+          @keyframes ctPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+          }
+          .currency-teaser-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #f8fafc;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin: 0 0 14px;
+          }
+          .currency-teaser-title span {
+            background: linear-gradient(90deg, #6366f1, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+          .currency-teaser-desc {
+            font-size: 15px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.7;
+            margin: 0 0 32px;
+          }
+          .currency-teaser-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #10b981 100%);
+            background-size: 200% 200%;
+            border-radius: 14px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(99,102,241,0.35);
+            animation: gradientShift 4s ease infinite;
+          }
+          @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .currency-teaser-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(99,102,241,0.5);
+          }
+          .currency-teaser-link svg {
+            transition: transform 0.3s ease;
+          }
+          .currency-teaser-link:hover svg {
+            transform: translateX(4px);
+          }
+          .currency-teaser-features {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+          }
+          .ct-feature-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 500;
+          }
+          .ct-feature-chip i {
+            font-size: 11px;
+            color: #10b981;
+          }
+
+          /* Animated preview card */
+          .currency-preview-card {
+            flex-shrink: 0;
+            width: 300px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 24px;
+            padding: 28px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07);
+          }
+          .cpc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+          }
+          .cpc-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+          }
+          .cpc-live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 10px rgba(16,185,129,0.8);
+            animation: ctPulse 1.5s ease-in-out infinite;
+          }
+          .cpc-from-panel {
+            background: rgba(99,102,241,0.08);
+            border: 1px solid rgba(99,102,241,0.18);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 4px;
+          }
+          .cpc-to-panel {
+            background: rgba(16,185,129,0.06);
+            border: 1px solid rgba(16,185,129,0.15);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 16px;
+          }
+          .cpc-panel-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+            margin-bottom: 8px;
+          }
+          .cpc-currency-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .cpc-currency-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #f1f5f9;
+            transition: all 0.4s ease;
+          }
+          .cpc-amount {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #f8fafc;
+          }
+          .cpc-converted-amount {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #10b981;
+          }
+          .cpc-swap-row {
+            display: flex;
+            justify-content: center;
+            margin: 4px 0;
+          }
+          .cpc-swap-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border: 2px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: white;
+          }
+          .cpc-rate-badge {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: #a5b4fc;
+            background: rgba(99,102,241,0.1);
+            border: 1px solid rgba(99,102,241,0.2);
+            border-radius: 8px;
+            padding: 6px 10px;
+            letter-spacing: 0.02em;
+            transition: all 0.4s ease;
+          }
+          .pair-fade-enter {
+            animation: pairFade 0.5s ease;
+          }
+          @keyframes pairFade {
+            0% { opacity: 0; transform: translateY(6px); }
+            100% { opacity: 1; transform: translateY(0); }
+          }
+        `}</style>
+
+        <div className="currency-teaser-inner">
+
+          {/* Left: text + CTA */}
+          <div className="currency-teaser-text">
+            <div className="currency-teaser-badge">
+              <div className="currency-teaser-badge-dot" />
+              Live Tool
+            </div>
+
+            <h2 className="currency-teaser-title">
+              Real-Time <span>Currency Converter</span>
+            </h2>
+
+            <p className="currency-teaser-desc">
+              One of my interactive live tools — instantly convert between 12+ world currencies
+              with up-to-date exchange rates. Built with React and the ExchangeRate API.
+            </p>
+
+            <NavLink to="/currency-converter" className="currency-teaser-link">
+              Try the Live Tool
+              <FontAwesomeIcon icon={faArrowRight} />
+            </NavLink>
+
+            <div className="currency-teaser-features">
+              <div className="ct-feature-chip">
+                <i className="fas fa-bolt" /> Live Rates
+              </div>
+              <div className="ct-feature-chip">
+                <i className="fas fa-exchange-alt" /> 12+ Currencies
+              </div>
+              <div className="ct-feature-chip">
+                <i className="fab fa-react" /> Built in React
+              </div>
+            </div>
+          </div>
+
+          {/* Right: animated preview card */}
+          <div className="currency-preview-card" data-aos="zoom-in" data-aos-delay="200">
+            <div className="cpc-header">
+              <span className="cpc-title">Preview</span>
+              <div className="cpc-live-dot" />
+            </div>
+
+            <div className="cpc-from-panel">
+              <div className="cpc-panel-label">You send</div>
+              <div className="cpc-currency-row">
+                <span className="cpc-currency-name pair-fade-enter" key={`from-${activePair}`}>
+                  {currencyPairs[activePair].from}
+                </span>
+                <span className="cpc-amount">1.00</span>
+              </div>
+            </div>
+
+            <div className="cpc-swap-row">
+              <div className="cpc-swap-icon">⇅</div>
+            </div>
+
+            <div className="cpc-to-panel">
+              <div className="cpc-panel-label">You receive</div>
+              <div className="cpc-currency-row">
+                <span className="cpc-currency-name pair-fade-enter" key={`to-${activePair}`}>
+                  {currencyPairs[activePair].to}
+                </span>
+                <span className="cpc-converted-amount pair-fade-enter" key={`rate-${activePair}`}>
+                  {currencyPairs[activePair].rate}
+                </span>
+              </div>
+            </div>
+
+            <div className="cpc-rate-badge pair-fade-enter" key={`badge-${activePair}`}>
+              1 {currencyPairs[activePair].from.split(' ')[1]} = {currencyPairs[activePair].rate} {currencyPairs[activePair].to.split(' ')[1]}
+            </div>
+          </div>
+
+        </div>
+      </section>
+      {/* =================== END CURRENCY CONVERTER TEASER =================== */}
 
       <section id="experience" className="section" data-aos="zoom-out">
         <div className="section-header">
