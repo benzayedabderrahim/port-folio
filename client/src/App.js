@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './home';
 import Contact from './contact';
 import CurrencyConverter from './convertor';
-import WeatherApp from './weather';
 
 function App() {
   return (
