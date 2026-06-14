@@ -101,6 +101,13 @@ function Home() {
   const workExperience = [
     {
       icon: faBriefcase,
+      year: '2025-Now',
+      company: 'Creatix Software Consulting',
+      description: 'Analyst web developer.',
+      link: 'https://www.linkedin.com/company/creatix-software-consulting/'    
+    },
+    {
+      icon: faBriefcase,
       year: '2024',
       company: 'Creatix Software Consulting',
       description: 'Summer Internship enhancing skills in database management and full-stack development using Django , AngularJS and MySQL Workbench.',
@@ -224,13 +231,32 @@ function Home() {
           </p>
           
           <div className="hero-buttons">
-            <button 
+            <button
               className="btn-primary"
               onClick={() => scrollToSection('projects')}
             >
               View My Work
             </button>
+            <NavLink to="/contacting" className="btn-secondary">
+              Get in Touch
+            </NavLink>
           </div>
+
+          <div className="hero-socials">
+            <a href="https://github.com/benzayedabderrahim" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i className="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/abderrahim-benzayed-b4694a234/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:benzayedabderrahim@gmail.com" aria-label="Email">
+              <i className="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+        <div className="scroll-indicator" onClick={() => scrollToSection('skills')} role="button" tabIndex={0} aria-label="Scroll to content">
+          <div className="scroll-arrow"></div>
         </div>
       </section>
 

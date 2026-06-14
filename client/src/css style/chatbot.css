@@ -5,7 +5,7 @@
   right: 30px;
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   border: none;
   border-radius: 50%;
   color: white;
@@ -112,7 +112,7 @@
 
 .bot-icon {
   font-size: 1.8rem;
-  color: #61dafb;
+  color: #6366f1;
 }
 
 .chatbot-title h3 {
@@ -191,12 +191,12 @@
 }
 
 .user-message .message-avatar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   color: white;
 }
 
 .bot-message .message-avatar {
-  background: linear-gradient(135deg, #61dafb 0%, #a777e3 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   color: white;
 }
 
@@ -209,7 +209,7 @@
 }
 
 .user-message .message-content {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   color: white;
   border-bottom-right-radius: 5px;
 }
@@ -307,9 +307,9 @@
 }
 
 .quick-btn:hover {
-  background: #667eea;
+  background: #6366f1;
   color: white;
-  border-color: #667eea;
+  border-color: #6366f1;
   transform: translateX(5px);
 }
 
@@ -334,13 +334,13 @@
 }
 
 .chatbot-input input:focus {
-  border-color: #667eea;
+  border-color: #6366f1;
 }
 
 .send-button {
   width: 45px;
   height: 45px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   border: none;
   border-radius: 50%;
   color: white;
