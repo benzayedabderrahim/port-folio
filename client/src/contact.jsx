@@ -156,7 +156,6 @@ function Contact() {
                 )}
               </div>
             )}
-
             <div className="form-group">
               <label htmlFor="subject">Your message</label>
               <textarea id="subject" name="subject" value={formData.subject} onChange={handleChange} placeholder="Tell me about your project or idea..." required></textarea>
