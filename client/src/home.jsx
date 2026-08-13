@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown, faDownload, faPlay, faXmark, faArrowRight, faCoins } from '@fortawesome/free-solid-svg-icons';
 import { Typewriter, Cursor } from 'react-simple-typewriter';
 import Footer from './components/footer';
-import ChatBot from './components/chatbot';
 
 function Home() {
   const [modalData, setModalData] = useState(null);
@@ -59,6 +58,7 @@ function Home() {
     { icon: 'fab fa-react', text: 'ReactJS', color: '#61dafb' },
     { icon: 'fab fa-angular', text: 'AngularJS', color: '#dd0031' },
     { icon: 'fab fa-python', text: 'Django', color: '#fbff02ff' },
+    { icon: 'fab fa-jenkins', text: 'Jenkins', color: '#d24939' },
     { icon: 'fa-solid fa-palette', text: 'Graphic Design', color: '#ff6b6b' },
     { icon: 'fa-solid fa-file-video', text: 'Video Editing', color: '#4ecdc4' },
   ];
@@ -66,6 +66,7 @@ function Home() {
   const academicCareer = [
     { icon: faCertificate, year: '2021', title: 'Baccalaureate', description: 'Economics and Management' },
     { icon: faGraduationCap, year: '2021-2024', title: 'Bachelor Degree in Business Computing', description: 'Higher Institute of Management, Gabes' },
+    { icon: faGraduationCap, year: '2024-2026', title: "Research Master's Degree in Business Intelligence", description: 'Higher Institute of Management, Gabès' },
   ];
 
   const projects = [
@@ -101,10 +102,32 @@ function Home() {
   const workExperience = [
     {
       icon: faBriefcase,
-      year: '2025-Now',
+      year: 'August 2025 – Present',
       company: 'Creatix Software Consulting',
-      description: 'Analyst web developer.',
-      link: 'https://www.linkedin.com/company/creatix-software-consulting/'    
+      role: 'Analyst Developer',
+      bullets: [
+        'Contributed to the design and development of two business applications, from requirements analysis to implementation.',
+        'Developed web applications using Django, Angular, and React with Vite.',
+        'Designed, managed, and optimized MySQL databases.',
+        'Participated in CI/CD and deployment workflows using Jenkins.',
+        'Leveraged AI-assisted development tools, including Claude Code, to improve development efficiency, code quality, and productivity.',
+        'Contributed to social media management and digital content strategy, including content planning, creation, and publication across social platforms.',
+        'Participated in the development of business-oriented software solutions and contributed to continuous improvements of existing applications.'
+      ],
+      link: 'https://www.linkedin.com/company/creatix-software-consulting/'
+    },
+    {
+      icon: faBriefcase,
+      year: 'June 2025 – August 2025',
+      company: 'Creatix Software Consulting',
+      role: 'Full-Stack Web Developer Intern',
+      bullets: [
+        'Website development using Django and Angular.',
+        'Worked as both designer and full-stack developer.',
+        'Database management.',
+        'E-Business solutions.'
+      ],
+      link: 'https://www.linkedin.com/company/creatix-software-consulting/'
     },
     {
       icon: faBriefcase,
@@ -703,7 +726,16 @@ function Home() {
                       work.company
                     )}
                   </h4>
-                  <p>{work.description}</p>
+                  {work.role && <p className="experience-role">{work.role}</p>}
+                  {work.bullets ? (
+                    <ul className="experience-bullets">
+                      {work.bullets.map((bullet, bulletIndex) => (
+                        <li key={bulletIndex}>{bullet}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>{work.description}</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -837,7 +869,6 @@ function Home() {
           </div>
         </div>
       )}
-      <ChatBot />
       <Footer />
     </>
   );

@@ -855,6 +855,23 @@ h1, h2, h3, h4, .nav-logo-text {
   margin-top: 5px;
 }
 
+.experience-role {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin: 2px 0 8px;
+}
+
+.experience-bullets {
+  margin: 0;
+  padding-left: 18px;
+  color: inherit;
+}
+
+.experience-bullets li {
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
 /* Enhanced Social Grid */
 .social-grid {
   display: grid;
@@ -1621,16 +1638,6 @@ h1, h2, h3, h4, .nav-logo-text {
   .social-link:hover,
   .quick-links a:hover {
     transform: none;
-  }
-}
-
-.chatbot-window.open ~ .back-to-top {
-  right: 430px;
-}
-
-@media (max-width: 768px) {
-  .chatbot-window.open ~ .back-to-top {
-    right: calc(100vw - 70px); 
   }
 }
 
