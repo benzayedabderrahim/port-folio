@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faHeart, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import '../css style/css.css';
 
 function Footer() {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
-    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [currentYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -31,10 +33,10 @@ function Footer() {
   return (
     <>
       {isVisible && (
-        <button 
-          className="back-to-top" 
+        <button
+          className="back-to-top"
           onClick={scrollToTop}
-          aria-label="Back to top"
+          aria-label={t('footer.backToTop')}
         >
           <FontAwesomeIcon icon={faArrowUp} />
         </button>
@@ -52,80 +54,80 @@ function Footer() {
           <div className="footer-main">
             <div className="footer-brand">
               <h3>Abderrahim Benzayed</h3>
-              <p>IT developer analyst & IT Specialist</p>
+              <p>{t('footer.tagline')}</p>
             </div>
-            
+
             <div className="footer-links">
               <div className="footer-section">
-                <h4>Connect</h4>
+                <h4>{t('footer.connect')}</h4>
                 <div className="social-links">
-                  <a 
-                    href="mailto:benzayedabderrahim@gmail.com" 
+                  <a
+                    href="mailto:benzayedabderrahim@gmail.com"
                     className="social-link"
-                    title="Email"
+                    title={t('footer.email')}
                     aria-label="Send email"
                   >
                     <div className="social-icon">
                       <FontAwesomeIcon icon={faEnvelope} />
                     </div>
-                    <span>Email</span>
+                    <span>{t('footer.email')}</span>
                   </a>
                   <a
                     href="https://www.linkedin.com/in/abderrahim-benzayed-b4694a234/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social-link"
-                    title="LinkedIn"
+                    title={t('footer.linkedin')}
                     aria-label="Visit LinkedIn profile"
                   >
                     <div className="social-icon">
                       <FontAwesomeIcon icon={faLinkedin} />
                     </div>
-                    <span>LinkedIn</span>
+                    <span>{t('footer.linkedin')}</span>
                   </a>
                   <a
                     href="https://github.com/benzayedabderrahim"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social-link"
-                    title="GitHub"
+                    title={t('footer.github')}
                     aria-label="Visit GitHub profile"
                   >
                     <div className="social-icon">
                       <FontAwesomeIcon icon={faGithub} />
                     </div>
-                    <span>GitHub</span>
+                    <span>{t('footer.github')}</span>
                   </a>
                 </div>
               </div>
-              
+
               <div className="footer-section">
-                <h4>Quick Links</h4>
+                <h4>{t('footer.quickLinks')}</h4>
                 <div className="quick-links">
-                  <a href="#home">Home</a>
-                  <a href="#projects">Projects</a>
-                  <a href="#skills">Skills</a>
-                  <a href="#contact">Contact</a>
+                  <a href="#home">{t('footer.quickLinkHome')}</a>
+                  <a href="#projects">{t('footer.quickLinkProjects')}</a>
+                  <a href="#skills">{t('footer.quickLinkSkills')}</a>
+                  <a href="#contact">{t('footer.quickLinkContact')}</a>
                 </div>
               </div>
-              
+
               <div className="footer-section">
-                <h4>Availability</h4>
+                <h4>{t('footer.availability')}</h4>
                 <div className="availability">
                   <div className="status-indicator">
                     <div className="status-dot"></div>
-                    <span>Open for opportunities</span>
+                    <span>{t('footer.openForOpportunities')}</span>
                   </div>
-                  <p>Let's build something amazing together!</p>
+                  <p>{t('footer.buildTogether')}</p>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <div className="footer-bottom">
             <div className="footer-credits">
               <p>
-                Made with <FontAwesomeIcon icon={faHeart} className="heart-icon" /> by Abderrahim Benzayed 
+                {t('footer.madeWithPrefix')} <FontAwesomeIcon icon={faHeart} className="heart-icon" /> {t('footer.madeWithSuffix')}
                 <span className="copyright"> © {currentYear}</span>
               </p>
             </div>

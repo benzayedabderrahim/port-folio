@@ -1,0 +1,242 @@
+{
+  "nav": {
+    "home": "Home",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "design": "Design",
+    "contact": "Contact Me",
+    "downloadCV": "Download CV"
+  },
+  "hero": {
+    "greeting": "Hello ",
+    "everyone": "Everyone!",
+    "imPrefix": "I'm ",
+    "name": "Abderrahim BENZAYED",
+    "specialistPrefix": "I'm an IT specialist with",
+    "typewriter": [
+      "Bachelor in Business Computing",
+      "experience in many projects",
+      "social events participation"
+    ],
+    "viewWork": "View My Work",
+    "getInTouch": "Get in Touch"
+  },
+  "skills": {
+    "heading": "Skills & Technologies",
+    "subheading": "Technologies I've worked with",
+    "items": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "MySQL",
+      "NodeJS",
+      "ReactJS",
+      "AngularJS",
+      "Django",
+      "Jenkins",
+      "Graphic Design",
+      "Video Editing"
+    ]
+  },
+  "academic": {
+    "heading": "Academic Career",
+    "subheading": "My educational journey",
+    "items": [
+      { "title": "Baccalaureate", "description": "Economics and Management" },
+      { "title": "Bachelor Degree in Business Computing", "description": "Higher Institute of Management, Gabes" },
+      { "title": "Research Master's Degree in Business Intelligence", "description": "Higher Institute of Management, Gabès" }
+    ]
+  },
+  "projects": {
+    "heading": "My Projects",
+    "subheading": "Some of my recent work",
+    "viewDemo": "View Demo",
+    "items": [
+      {
+        "title": "Re'Vision App",
+        "description": "Simple analyzing youtube videos app using Google API (YouTube v3) , Django and ReactJS."
+      },
+      {
+        "title": "End of Studies Project",
+        "description": "Marketplace platform for agriculture: products, land, and community. Built with ReactJS , NodeJS and MySQL"
+      },
+      {
+        "title": "Currency Converter",
+        "description": "Simple currency converter. Built with HTML & JavaScript"
+      }
+    ]
+  },
+  "currencyTeaser": {
+    "badge": "Live Tool",
+    "titlePrefix": "Real-Time ",
+    "titleHighlight": "Currency Converter",
+    "description": "One of my interactive live tools — instantly convert between 12+ world currencies with up-to-date exchange rates. Built with React and the ExchangeRate API.",
+    "cta": "Try the Live Tool",
+    "featureLiveRates": "Live Rates",
+    "featureCurrencies": "12+ Currencies",
+    "featureReact": "Built in React",
+    "preview": "Preview",
+    "youSend": "You send",
+    "youReceive": "You receive"
+  },
+  "experience": {
+    "heading": "Work Experience",
+    "subheading": "My professional journey",
+    "items": [
+      {
+        "role": "Analyst Developer",
+        "bullets": [
+          "Contributed to the design and development of two business applications, from requirements analysis to implementation.",
+          "Developed web applications using Django, Angular, and React with Vite.",
+          "Designed, managed, and optimized MySQL databases.",
+          "Participated in CI/CD and deployment workflows using Jenkins.",
+          "Leveraged AI-assisted development tools, including Claude Code, to improve development efficiency, code quality, and productivity.",
+          "Contributed to social media management and digital content strategy, including content planning, creation, and publication across social platforms.",
+          "Participated in the development of business-oriented software solutions and contributed to continuous improvements of existing applications."
+        ]
+      },
+      {
+        "role": "Full-Stack Web Developer Intern",
+        "bullets": [
+          "Website development using Django and Angular.",
+          "Worked as both designer and full-stack developer.",
+          "Database management.",
+          "E-Business solutions."
+        ]
+      },
+      {
+        "description": "Summer Internship enhancing skills in database management and full-stack development using Django , AngularJS and MySQL Workbench."
+      },
+      {
+        "description": "Summer Internship enhancing skills in database management and full-stack development."
+      },
+      {
+        "description": "Summer Internship focused on website development using Angular & NodeJS, network management, and fiber optics."
+      }
+    ]
+  },
+  "social": {
+    "heading": "Social Life",
+    "subheading": "Community involvement",
+    "items": [
+      "Member CUBERS Club (2021–2024)",
+      "Participant, Sm'art Hackathon, Gabes (Dec 2023)",
+      "President, CUBERS Club (July 2024 – June 2025)"
+    ]
+  },
+  "graphic": {
+    "heading": "Graphic Design Library",
+    "subheading": "My creative designs",
+    "viewDetails": "View Details",
+    "items": [
+      { "title": "9th April , poster design", "description": "A creative poster for the national day" },
+      { "title": "Exams poster", "description": "An exams poster to motivate the students" },
+      { "title": "Motivation", "description": "Motivational poster for exams." },
+      { "title": "Event Poster", "description": "Professional poster for FCSIT event" },
+      { "title": "Eid poster", "description": "Poster of Eid AL Adha" }
+    ]
+  },
+  "languages": {
+    "heading": "Languages",
+    "subheading": "Languages I speak",
+    "names": {
+      "arabic": "Arabic",
+      "english": "English",
+      "french": "French",
+      "german": "German"
+    },
+    "levels": {
+      "native": "Fluent (Native)",
+      "excellent": "Excellent",
+      "intermediate": "Intermediate",
+      "beginner": "Beginner"
+    }
+  },
+  "footer": {
+    "tagline": "IT developer analyst & IT Specialist",
+    "connect": "Connect",
+    "quickLinks": "Quick Links",
+    "availability": "Availability",
+    "openForOpportunities": "Open for opportunities",
+    "buildTogether": "Let's build something amazing together!",
+    "madeWithPrefix": "Made with",
+    "madeWithSuffix": "by Abderrahim Benzayed",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "quickLinkHome": "Home",
+    "quickLinkProjects": "Projects",
+    "quickLinkSkills": "Skills",
+    "quickLinkContact": "Contact",
+    "backToTop": "Back to top"
+  },
+  "contact": {
+    "badge": "Available for opportunities",
+    "headingPrefix": "Let's build something ",
+    "headingHighlight": "together",
+    "subtext": "Have a project in mind, a question, or just want to say hello? Drop me a message and I'll get back to you as soon as possible.",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "location": "Location",
+    "locationValue": "Gabes, Tunisia",
+    "cardTitle": "Send a message",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "country": "Country",
+    "selectCountry": "Select your country",
+    "other": "Other",
+    "specifyCountry": "Specify your country",
+    "specifyPlaceholder": "Please specify your country",
+    "countryWarning": "This option already exists — just choose it from the list!",
+    "messageLabel": "Your message",
+    "messagePlaceholder": "Tell me about your project or idea...",
+    "sending": "Sending...",
+    "sendMessage": "Send Message",
+    "successAlert": "Your message has been sent successfully ❤",
+    "countries": {
+      "Tunisia": "Tunisia",
+      "Algeria": "Algeria",
+      "Germany": "Germany",
+      "United Kingdom": "United Kingdom",
+      "Spain": "Spain",
+      "Portugal": "Portugal",
+      "Italy": "Italy",
+      "Switzerland": "Switzerland",
+      "Poland": "Poland",
+      "France": "France",
+      "Canada": "Canada",
+      "USA": "USA",
+      "Austria": "Austria",
+      "Turkey": "Turkey"
+    }
+  },
+  "convertor": {
+    "badge": "Live Rates",
+    "title": "Currency Converter",
+    "subtitle": "Real-time exchange rates, always accurate",
+    "youSend": "You send",
+    "youReceive": "You receive",
+    "fetchingRates": "Fetching rates…",
+    "updating": "Updating…",
+    "refresh": "↻ Refresh Rates",
+    "updated": "Updated {{time}}",
+    "ratesProvided": "Rates provided by ExchangeRate-API",
+    "errorFetch": "Could not fetch rates. Showing cached data.",
+    "currencyNames": {
+      "TND": "Tunisian Dinar",
+      "USD": "US Dollar",
+      "EUR": "Euro",
+      "GBP": "British Pound",
+      "JPY": "Japanese Yen",
+      "CAD": "Canadian Dollar",
+      "AUD": "Australian Dollar",
+      "CHF": "Swiss Franc",
+      "CNY": "Chinese Yuan",
+      "MAD": "Moroccan Dirham",
+      "SAR": "Saudi Riyal",
+      "AED": "UAE Dirham"
+    }
+  }
+}

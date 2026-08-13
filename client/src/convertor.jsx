@@ -1,22 +1,23 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const API_KEY = "e3afd566e7b761125e620727";
 const BASE_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/`;
 const CACHE_DURATION = 3600000;
 
 const CURRENCIES = [
-  { code: "TND", name: "Tunisian Dinar", symbol: "د.ت", flag: "🇹🇳" },
-  { code: "USD", name: "US Dollar", symbol: "$", flag: "🇺🇸" },
-  { code: "EUR", name: "Euro", symbol: "€", flag: "🇪🇺" },
-  { code: "GBP", name: "British Pound", symbol: "£", flag: "🇬🇧" },
-  { code: "JPY", name: "Japanese Yen", symbol: "¥", flag: "🇯🇵" },
-  { code: "CAD", name: "Canadian Dollar", symbol: "C$", flag: "🇨🇦" },
-  { code: "AUD", name: "Australian Dollar", symbol: "A$", flag: "🇦🇺" },
-  { code: "CHF", name: "Swiss Franc", symbol: "Fr", flag: "🇨🇭" },
-  { code: "CNY", name: "Chinese Yuan", symbol: "¥", flag: "🇨🇳" },
-  { code: "MAD", name: "Moroccan Dirham", symbol: "د.م.", flag: "🇲🇦" },
-  { code: "SAR", name: "Saudi Riyal", symbol: "﷼", flag: "🇸🇦" },
-  { code: "AED", name: "UAE Dirham", symbol: "د.إ", flag: "🇦🇪" },
+  { code: "TND", symbol: "د.ت", flag: "🇹🇳" },
+  { code: "USD", symbol: "$", flag: "🇺🇸" },
+  { code: "EUR", symbol: "€", flag: "🇪🇺" },
+  { code: "GBP", symbol: "£", flag: "🇬🇧" },
+  { code: "JPY", symbol: "¥", flag: "🇯🇵" },
+  { code: "CAD", symbol: "C$", flag: "🇨🇦" },
+  { code: "AUD", symbol: "A$", flag: "🇦🇺" },
+  { code: "CHF", symbol: "Fr", flag: "🇨🇭" },
+  { code: "CNY", symbol: "¥", flag: "🇨🇳" },
+  { code: "MAD", symbol: "د.م.", flag: "🇲🇦" },
+  { code: "SAR", symbol: "﷼", flag: "🇸🇦" },
+  { code: "AED", symbol: "د.إ", flag: "🇦🇪" },
 ];
 
 const getCurrencyByCode = (code) => CURRENCIES.find((c) => c.code === code) || CURRENCIES[0];
@@ -44,12 +45,14 @@ function AnimatedNumber({ value }) {
     };
 
     requestAnimationFrame(animate);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return <>{display}</>;
 }
 
 export default function CurrencyConverter() {
+  const { t } = useTranslation();
   const [fromCurrency, setFromCurrency] = useState("TND");
   const [toCurrency, setToCurrency] = useState("USD");
   const [amount, setAmount] = useState("1");
@@ -58,7 +61,6 @@ export default function CurrencyConverter() {
   const [lastUpdated, setLastUpdated] = useState(null);
   const [error, setError] = useState(null);
   const [swapping, setSwapping] = useState(false);
-  const [sparkle, setSparkle] = useState(false);
 
   const fetchRates = useCallback(async (base) => {
     setLoading(true);
@@ -82,11 +84,11 @@ export default function CurrencyConverter() {
       setLastUpdated(new Date());
       sessionStorage.setItem(`rates_${base}`, JSON.stringify({ rates: data.conversion_rates, timestamp: Date.now() }));
     } catch (e) {
-      setError("Could not fetch rates. Showing cached data.");
+      setError(t('convertor.errorFetch'));
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => { fetchRates(fromCurrency); }, [fromCurrency, fetchRates]);
 
@@ -100,13 +102,11 @@ export default function CurrencyConverter() {
 
   const handleSwap = () => {
     setSwapping(true);
-    setSparkle(true);
     setTimeout(() => {
       setFromCurrency(toCurrency);
       setToCurrency(fromCurrency);
       setSwapping(false);
     }, 300);
-    setTimeout(() => setSparkle(false), 800);
   };
 
   const fromC = getCurrencyByCode(fromCurrency);
@@ -393,16 +393,16 @@ export default function CurrencyConverter() {
             <div style={{ display: "flex", justifyContent: "center", marginBottom: "16px" }}>
               <div style={styles.badge}>
                 <div style={styles.pulseDot} />
-                Live Rates
+                {t('convertor.badge')}
               </div>
             </div>
-            <h1 style={styles.title}>Currency Converter</h1>
-            <p style={styles.subtitle}>Real-time exchange rates, always accurate</p>
+            <h1 style={styles.title}>{t('convertor.title')}</h1>
+            <p style={styles.subtitle}>{t('convertor.subtitle')}</p>
           </div>
 
           {/* From Panel */}
           <div style={styles.panelFrom} className="from-panel panel-animate">
-            <div style={styles.panelLabel}>You send</div>
+            <div style={styles.panelLabel}>{t('convertor.youSend')}</div>
             <div style={styles.selectRow}>
               <div style={styles.flagBox}>{fromC.flag}</div>
               <div style={styles.selectWrap}>
@@ -412,7 +412,7 @@ export default function CurrencyConverter() {
                   onChange={(e) => setFromCurrency(e.target.value)}
                 >
                   {CURRENCIES.map((c) => (
-                    <option key={c.code} value={c.code}>{c.flag} {c.code} — {c.name}</option>
+                    <option key={c.code} value={c.code}>{c.flag} {c.code} — {t(`convertor.currencyNames.${c.code}`)}</option>
                   ))}
                 </select>
               </div>
@@ -426,7 +426,7 @@ export default function CurrencyConverter() {
               min="0"
               step="0.01"
             />
-            <div style={styles.currencyCode}>{fromC.symbol} {fromC.name}</div>
+            <div style={styles.currencyCode}>{fromC.symbol} {t(`convertor.currencyNames.${fromC.code}`)}</div>
           </div>
 
           {/* Swap Button */}
@@ -445,7 +445,7 @@ export default function CurrencyConverter() {
 
           {/* To Panel */}
           <div style={styles.panelTo} className="panel-animate">
-            <div style={styles.panelLabel}>You receive</div>
+            <div style={styles.panelLabel}>{t('convertor.youReceive')}</div>
             <div style={styles.selectRow}>
               <div style={{ ...styles.flagBox, background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)" }}>
                 {toC.flag}
@@ -457,7 +457,7 @@ export default function CurrencyConverter() {
                   onChange={(e) => setToCurrency(e.target.value)}
                 >
                   {CURRENCIES.map((c) => (
-                    <option key={c.code} value={c.code}>{c.flag} {c.code} — {c.name}</option>
+                    <option key={c.code} value={c.code}>{c.flag} {c.code} — {t(`convertor.currencyNames.${c.code}`)}</option>
                   ))}
                 </select>
               </div>
@@ -466,7 +466,7 @@ export default function CurrencyConverter() {
             {loading ? (
               <div style={styles.loader}>
                 <div style={{ width: "16px", height: "16px", border: "2px solid rgba(16,185,129,0.2)", borderTop: "2px solid #10b981", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
-                Fetching rates…
+                {t('convertor.fetchingRates')}
               </div>
             ) : (
               <>
@@ -474,7 +474,7 @@ export default function CurrencyConverter() {
                   {convertedAmount ? <AnimatedNumber value={convertedAmount} /> : "—"}
                 </div>
                 <div style={{ ...styles.currencyCode, color: "rgba(16,185,129,0.6)" }}>
-                  {toC.symbol} {toC.name}
+                  {toC.symbol} {t(`convertor.currencyNames.${toC.code}`)}
                 </div>
               </>
             )}
@@ -505,18 +505,18 @@ export default function CurrencyConverter() {
             {loading ? (
               <>
                 <div style={{ width: "14px", height: "14px", border: "2px solid rgba(255,255,255,0.3)", borderTop: "2px solid #fff", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
-                Updating…
+                {t('convertor.updating')}
               </>
             ) : (
-              <> ↻ Refresh Rates</>
+              <>{t('convertor.refresh')}</>
             )}
           </button>
 
           {/* Footer */}
           <div style={styles.footer}>
             {lastUpdated
-              ? `Updated ${lastUpdated.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
-              : "Rates provided by ExchangeRate-API"}
+              ? t('convertor.updated', { time: lastUpdated.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) })
+              : t('convertor.ratesProvided')}
           </div>
         </div>
       </div>

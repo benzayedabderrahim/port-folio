@@ -1,0 +1,242 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "experience": "Expérience",
+    "design": "Design",
+    "contact": "Me Contacter",
+    "downloadCV": "Télécharger CV"
+  },
+  "hero": {
+    "greeting": "Bonjour à ",
+    "everyone": "Tous !",
+    "imPrefix": "Je suis ",
+    "name": "Abderrahim BENZAYED",
+    "specialistPrefix": "Je suis spécialiste IT avec",
+    "typewriter": [
+      "Licence en Informatique de Gestion",
+      "expérience dans de nombreux projets",
+      "participation à des événements sociaux"
+    ],
+    "viewWork": "Voir mes projets",
+    "getInTouch": "Me contacter"
+  },
+  "skills": {
+    "heading": "Compétences & Technologies",
+    "subheading": "Technologies avec lesquelles j'ai travaillé",
+    "items": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "MySQL",
+      "NodeJS",
+      "ReactJS",
+      "AngularJS",
+      "Django",
+      "Jenkins",
+      "Design Graphique",
+      "Montage Vidéo"
+    ]
+  },
+  "academic": {
+    "heading": "Parcours Académique",
+    "subheading": "Mon parcours éducatif",
+    "items": [
+      { "title": "Baccalauréat", "description": "Économie et Gestion" },
+      { "title": "Licence en Informatique de Gestion", "description": "Institut Supérieur de Gestion, Gabès" },
+      { "title": "Mastère de Recherche en Business Intelligence", "description": "Institut Supérieur de Gestion, Gabès" }
+    ]
+  },
+  "projects": {
+    "heading": "Mes Projets",
+    "subheading": "Quelques-uns de mes travaux récents",
+    "viewDemo": "Voir la démo",
+    "items": [
+      {
+        "title": "Re'Vision App",
+        "description": "Application simple d'analyse de vidéos YouTube utilisant l'API Google (YouTube v3), Django et ReactJS."
+      },
+      {
+        "title": "Projet de Fin d'Études",
+        "description": "Plateforme de marketplace agricole : produits, terrains et communauté. Développée avec ReactJS, NodeJS et MySQL"
+      },
+      {
+        "title": "Convertisseur de devises",
+        "description": "Convertisseur de devises simple. Développé avec HTML & JavaScript"
+      }
+    ]
+  },
+  "currencyTeaser": {
+    "badge": "Outil en direct",
+    "titlePrefix": "Convertisseur de devises ",
+    "titleHighlight": "en temps réel",
+    "description": "Un de mes outils interactifs en direct — convertissez instantanément entre plus de 12 devises mondiales avec des taux de change à jour. Développé avec React et l'API ExchangeRate.",
+    "cta": "Essayer l'outil en direct",
+    "featureLiveRates": "Taux en direct",
+    "featureCurrencies": "12+ devises",
+    "featureReact": "Développé en React",
+    "preview": "Aperçu",
+    "youSend": "Vous envoyez",
+    "youReceive": "Vous recevez"
+  },
+  "experience": {
+    "heading": "Expérience Professionnelle",
+    "subheading": "Mon parcours professionnel",
+    "items": [
+      {
+        "role": "Analyste Développeur",
+        "bullets": [
+          "Contribution à la conception et au développement de deux applications métier, de l'analyse des besoins à la mise en œuvre.",
+          "Développement d'applications web avec Django, Angular et React (Vite).",
+          "Conception, gestion et optimisation de bases de données MySQL.",
+          "Participation aux workflows CI/CD et de déploiement avec Jenkins.",
+          "Utilisation d'outils de développement assistés par IA, dont Claude Code, pour améliorer l'efficacité, la qualité du code et la productivité.",
+          "Contribution à la gestion des réseaux sociaux et à la stratégie de contenu digital, incluant la planification, la création et la publication de contenu.",
+          "Participation au développement de solutions logicielles métier et à l'amélioration continue des applications existantes."
+        ]
+      },
+      {
+        "role": "Stagiaire Développeur Full-Stack",
+        "bullets": [
+          "Développement de sites web avec Django et Angular.",
+          "Travail à la fois comme designer et développeur full-stack.",
+          "Gestion de bases de données.",
+          "Solutions E-Business."
+        ]
+      },
+      {
+        "description": "Stage d'été pour renforcer les compétences en gestion de bases de données et développement full-stack avec Django, AngularJS et MySQL Workbench."
+      },
+      {
+        "description": "Stage d'été pour renforcer les compétences en gestion de bases de données et développement full-stack."
+      },
+      {
+        "description": "Stage d'été axé sur le développement web avec Angular & NodeJS, la gestion de réseaux et la fibre optique."
+      }
+    ]
+  },
+  "social": {
+    "heading": "Vie Sociale",
+    "subheading": "Engagement communautaire",
+    "items": [
+      "Membre du Club CUBERS (2021–2024)",
+      "Participant, Sm'art Hackathon, Gabès (Déc. 2023)",
+      "Président du Club CUBERS (Juillet 2024 – Juin 2025)"
+    ]
+  },
+  "graphic": {
+    "heading": "Bibliothèque de Design Graphique",
+    "subheading": "Mes créations",
+    "viewDetails": "Voir les détails",
+    "items": [
+      { "title": "9 Avril, design d'affiche", "description": "Une affiche créative pour la fête nationale" },
+      { "title": "Affiche d'examens", "description": "Une affiche pour motiver les étudiants pendant les examens" },
+      { "title": "Motivation", "description": "Affiche de motivation pour les examens." },
+      { "title": "Affiche d'événement", "description": "Affiche professionnelle pour l'événement FCSIT" },
+      { "title": "Affiche de l'Aïd", "description": "Affiche de l'Aïd al-Adha" }
+    ]
+  },
+  "languages": {
+    "heading": "Langues",
+    "subheading": "Langues que je parle",
+    "names": {
+      "arabic": "Arabe",
+      "english": "Anglais",
+      "french": "Français",
+      "german": "Allemand"
+    },
+    "levels": {
+      "native": "Courant (Langue maternelle)",
+      "excellent": "Excellent",
+      "intermediate": "Intermédiaire",
+      "beginner": "Débutant"
+    }
+  },
+  "footer": {
+    "tagline": "Analyste développeur IT & Spécialiste IT",
+    "connect": "Contact",
+    "quickLinks": "Liens rapides",
+    "availability": "Disponibilité",
+    "openForOpportunities": "Ouvert aux opportunités",
+    "buildTogether": "Construisons ensemble quelque chose d'incroyable !",
+    "madeWithPrefix": "Fait avec",
+    "madeWithSuffix": "par Abderrahim Benzayed",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "quickLinkHome": "Accueil",
+    "quickLinkProjects": "Projets",
+    "quickLinkSkills": "Compétences",
+    "quickLinkContact": "Contact",
+    "backToTop": "Retour en haut"
+  },
+  "contact": {
+    "badge": "Disponible pour des opportunités",
+    "headingPrefix": "Construisons quelque chose ",
+    "headingHighlight": "ensemble",
+    "subtext": "Vous avez un projet en tête, une question, ou vous voulez juste dire bonjour ? Envoyez-moi un message et je vous répondrai dès que possible.",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "location": "Localisation",
+    "locationValue": "Gabès, Tunisie",
+    "cardTitle": "Envoyer un message",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "country": "Pays",
+    "selectCountry": "Sélectionnez votre pays",
+    "other": "Autre",
+    "specifyCountry": "Précisez votre pays",
+    "specifyPlaceholder": "Veuillez préciser votre pays",
+    "countryWarning": "Cette option existe déjà — choisissez-la simplement dans la liste !",
+    "messageLabel": "Votre message",
+    "messagePlaceholder": "Parlez-moi de votre projet ou de votre idée...",
+    "sending": "Envoi en cours...",
+    "sendMessage": "Envoyer le message",
+    "successAlert": "Votre message a été envoyé avec succès ❤",
+    "countries": {
+      "Tunisia": "Tunisie",
+      "Algeria": "Algérie",
+      "Germany": "Allemagne",
+      "United Kingdom": "Royaume-Uni",
+      "Spain": "Espagne",
+      "Portugal": "Portugal",
+      "Italy": "Italie",
+      "Switzerland": "Suisse",
+      "Poland": "Pologne",
+      "France": "France",
+      "Canada": "Canada",
+      "USA": "États-Unis",
+      "Austria": "Autriche",
+      "Turkey": "Turquie"
+    }
+  },
+  "convertor": {
+    "badge": "Taux en direct",
+    "title": "Convertisseur de devises",
+    "subtitle": "Taux de change en temps réel, toujours exacts",
+    "youSend": "Vous envoyez",
+    "youReceive": "Vous recevez",
+    "fetchingRates": "Récupération des taux…",
+    "updating": "Mise à jour…",
+    "refresh": "↻ Actualiser les taux",
+    "updated": "Mis à jour {{time}}",
+    "ratesProvided": "Taux fournis par ExchangeRate-API",
+    "errorFetch": "Impossible de récupérer les taux. Affichage des données en cache.",
+    "currencyNames": {
+      "TND": "Dinar tunisien",
+      "USD": "Dollar américain",
+      "EUR": "Euro",
+      "GBP": "Livre sterling",
+      "JPY": "Yen japonais",
+      "CAD": "Dollar canadien",
+      "AUD": "Dollar australien",
+      "CHF": "Franc suisse",
+      "CNY": "Yuan chinois",
+      "MAD": "Dirham marocain",
+      "SAR": "Riyal saoudien",
+      "AED": "Dirham des Émirats"
+    }
+  }
+}

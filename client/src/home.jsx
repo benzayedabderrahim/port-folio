@@ -8,13 +8,21 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import './css style/css.css';
 import dev from './dev.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown, faDownload, faPlay, faXmark, faArrowRight, faCoins } from '@fortawesome/free-solid-svg-icons';
+import { faUserFriends, faGraduationCap, faCertificate, faBriefcase, faPeopleGroup, faCrown, faPlay, faXmark, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Typewriter, Cursor } from 'react-simple-typewriter';
+import { useTranslation } from 'react-i18next';
 import Footer from './components/footer';
 
+// Currency pairs to animate in the teaser card
+const CURRENCY_PAIRS = [
+  { from: '🇹🇳 TND', to: '🇺🇸 USD', rate: '0.32' },
+  { from: '🇺🇸 USD', to: '🇪🇺 EUR', rate: '0.92' },
+  { from: '🇬🇧 GBP', to: '🇹🇳 TND', rate: '3.88' },
+];
+
 function Home() {
+  const { t, i18n } = useTranslation();
   const [modalData, setModalData] = useState(null);
-  const [showVideoModal, setShowVideoModal] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -41,39 +49,40 @@ function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const graphicItems = [
-    { src: require('./pics/design1.png'), title: '9th April , poster design', description: 'A creative poster for the national day' },
-    { src: require('./pics/design2.png'), title: 'Exams poster', description: 'An exams poster to motivate the students' },
-    { src: require('./pics/design3.png'), title: 'Motivation', description: 'Motivational poster for exams.' },
-    { src: require('./pics/FCSIT.png'), title: 'Event Poster', description: 'Professional poster for FCSIT event' },
-    { src: require('./pics/aff.png'), title: 'Eid poster', description: 'Poster of Eid AL Adha' },
+  const graphicMeta = [
+    { src: require('./pics/design1.png') },
+    { src: require('./pics/design2.png') },
+    { src: require('./pics/design3.png') },
+    { src: require('./pics/FCSIT.png') },
+    { src: require('./pics/aff.png') },
   ];
+  const graphicItems = t('graphic.items', { returnObjects: true }).map((item, i) => ({ ...item, ...graphicMeta[i] }));
 
-  const skills = [
-    { icon: 'fab fa-html5', text: 'HTML', color: '#e34f26' },
-    { icon: 'fab fa-css3-alt', text: 'CSS', color: '#1572b6' },
-    { icon: 'fab fa-js-square', text: 'JavaScript', color: '#f7df1e' },
-    { icon: 'fas fa-database', text: 'MySQL', color: '#4479a1' },
-    { icon: 'fab fa-node-js', text: 'NodeJS', color: '#339933' },
-    { icon: 'fab fa-react', text: 'ReactJS', color: '#61dafb' },
-    { icon: 'fab fa-angular', text: 'AngularJS', color: '#dd0031' },
-    { icon: 'fab fa-python', text: 'Django', color: '#fbff02ff' },
-    { icon: 'fab fa-jenkins', text: 'Jenkins', color: '#d24939' },
-    { icon: 'fa-solid fa-palette', text: 'Graphic Design', color: '#ff6b6b' },
-    { icon: 'fa-solid fa-file-video', text: 'Video Editing', color: '#4ecdc4' },
+  const skillsMeta = [
+    { icon: 'fab fa-html5', color: '#e34f26' },
+    { icon: 'fab fa-css3-alt', color: '#1572b6' },
+    { icon: 'fab fa-js-square', color: '#f7df1e' },
+    { icon: 'fas fa-database', color: '#4479a1' },
+    { icon: 'fab fa-node-js', color: '#339933' },
+    { icon: 'fab fa-react', color: '#61dafb' },
+    { icon: 'fab fa-angular', color: '#dd0031' },
+    { icon: 'fab fa-python', color: '#fbff02ff' },
+    { icon: 'fab fa-jenkins', color: '#d24939' },
+    { icon: 'fa-solid fa-palette', color: '#ff6b6b' },
+    { icon: 'fa-solid fa-file-video', color: '#4ecdc4' },
   ];
+  const skills = t('skills.items', { returnObjects: true }).map((text, i) => ({ ...skillsMeta[i], text }));
 
-  const academicCareer = [
-    { icon: faCertificate, year: '2021', title: 'Baccalaureate', description: 'Economics and Management' },
-    { icon: faGraduationCap, year: '2021-2024', title: 'Bachelor Degree in Business Computing', description: 'Higher Institute of Management, Gabes' },
-    { icon: faGraduationCap, year: '2024-2026', title: "Research Master's Degree in Business Intelligence", description: 'Higher Institute of Management, Gabès' },
+  const academicMeta = [
+    { icon: faCertificate, year: '2021' },
+    { icon: faGraduationCap, year: '2021-2024' },
+    { icon: faGraduationCap, year: '2024-2026' },
   ];
+  const academicCareer = t('academic.items', { returnObjects: true }).map((item, i) => ({ ...item, ...academicMeta[i] }));
 
-  const projects = [
+  const projectsMeta = [
     {
       icon: faBriefcase,
-      title: 'Re\'Vision App',
-      description: 'Simple analyzing youtube videos app using Google API (YouTube v3) , Django and ReactJS.',
       link: 'https://github.com/benzayedabderrahim/ReVisionApp--Frontend-.git',
       external: true,
       video: require('./components/video/rev.mp4'),
@@ -81,8 +90,6 @@ function Home() {
     },
     {
       icon: faBriefcase,
-      title: 'End of Studies Project',
-      description: 'Marketplace platform for agriculture: products, land, and community. Built with ReactJS , NodeJS and MySQL',
       link: '/projects/marketplace',
       external: false,
       video: require('./components/video/vid1.mp4'),
@@ -90,85 +97,54 @@ function Home() {
     },
     {
       icon: faBriefcase,
-      title: 'Currency Converter',
-      description: 'Simple currency converter. Built with HTML & JavaScript',
       link: 'https://github.com/benzayedabderrahim/CurrencyConvertor',
       external: true,
       video: require('./components/video/currconv.mp4'),
       tags: ['HTML', 'JavaScript']
     },
   ];
+  const projects = t('projects.items', { returnObjects: true }).map((item, i) => ({ ...item, ...projectsMeta[i] }));
 
-  const workExperience = [
+  const workExperienceMeta = [
     {
       icon: faBriefcase,
       year: 'August 2025 – Present',
       company: 'Creatix Software Consulting',
-      role: 'Analyst Developer',
-      bullets: [
-        'Contributed to the design and development of two business applications, from requirements analysis to implementation.',
-        'Developed web applications using Django, Angular, and React with Vite.',
-        'Designed, managed, and optimized MySQL databases.',
-        'Participated in CI/CD and deployment workflows using Jenkins.',
-        'Leveraged AI-assisted development tools, including Claude Code, to improve development efficiency, code quality, and productivity.',
-        'Contributed to social media management and digital content strategy, including content planning, creation, and publication across social platforms.',
-        'Participated in the development of business-oriented software solutions and contributed to continuous improvements of existing applications.'
-      ],
       link: 'https://www.linkedin.com/company/creatix-software-consulting/'
     },
     {
       icon: faBriefcase,
       year: 'June 2025 – August 2025',
       company: 'Creatix Software Consulting',
-      role: 'Full-Stack Web Developer Intern',
-      bullets: [
-        'Website development using Django and Angular.',
-        'Worked as both designer and full-stack developer.',
-        'Database management.',
-        'E-Business solutions.'
-      ],
       link: 'https://www.linkedin.com/company/creatix-software-consulting/'
     },
     {
       icon: faBriefcase,
       year: '2024',
       company: 'Creatix Software Consulting',
-      description: 'Summer Internship enhancing skills in database management and full-stack development using Django , AngularJS and MySQL Workbench.',
-      link: 'https://www.linkedin.com/company/creatix-software-consulting/'    
+      link: 'https://www.linkedin.com/company/creatix-software-consulting/'
     },
     {
       icon: faBriefcase,
       year: '2023',
       company: 'Tunisie Télécom',
-      description: 'Summer Internship enhancing skills in database management and full-stack development.',
       link: 'https://www.tunisietelecom.tn/particulier/'
     },
     {
       icon: faBriefcase,
       year: '2022',
       company: 'Tunisie Télécom',
-      description: 'Summer Internship focused on website development using Angular & NodeJS, network management, and fiber optics.',
       link: 'https://www.tunisietelecom.tn/particulier/'
     },
   ];
+  const workExperience = t('experience.items', { returnObjects: true }).map((item, i) => ({ ...item, ...workExperienceMeta[i] }));
 
-  const socialLife = [
-    {
-      icon: faUserFriends,
-      description: 'Member CUBERS Club (2021–2024)',
-      link: 'https://www.facebook.com/CubresClub'
-    },
-    { 
-      icon: faPeopleGroup, 
-      description: 'Participant, Sm\'art Hackathon, Gabes (Dec 2023)',
-      link: null
-    },
-    { 
-      icon: faCrown, 
-      description: 'President, CUBERS Club (July 2024 – June 2025)',
-      link: 'https://www.facebook.com/CubresClub'
-    },
+  const socialLifeMeta = [
+    { icon: faUserFriends, link: 'https://www.facebook.com/CubresClub' },
+    { icon: faPeopleGroup, link: null },
+    { icon: faCrown, link: 'https://www.facebook.com/CubresClub' },
   ];
+  const socialLife = t('social.items', { returnObjects: true }).map((description, i) => ({ description, ...socialLifeMeta[i] }));
 
   const openModal = (item) => {
     setModalData(item);
@@ -199,17 +175,11 @@ function Home() {
     }
   };
 
-  // Currency pairs to animate in the teaser card
-  const currencyPairs = [
-    { from: '🇹🇳 TND', to: '🇺🇸 USD', rate: '0.32' },
-    { from: '🇺🇸 USD', to: '🇪🇺 EUR', rate: '0.92' },
-    { from: '🇬🇧 GBP', to: '🇹🇳 TND', rate: '3.88' },
-  ];
   const [activePair, setActivePair] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActivePair(prev => (prev + 1) % currencyPairs.length);
+      setActivePair(prev => (prev + 1) % CURRENCY_PAIRS.length);
     }, 2000);
     return () => clearInterval(interval);
   }, []);
@@ -238,13 +208,14 @@ function Home() {
             </div>
           </div>
           
-          <h1>Hello <span className="highlight">Everyone!</span></h1>
-          <h2>I'm <span className="name-gradient">Abderrahim BENZAYED</span></h2>
+          <h1>{t('hero.greeting')}<span className="highlight">{t('hero.everyone')}</span></h1>
+          <h2>{t('hero.imPrefix')}<span className="name-gradient">{t('hero.name')}</span></h2>
           <p className="typewriter">
-            I'm an IT specialist with&nbsp;
+            {t('hero.specialistPrefix')}&nbsp;
             <span className="typing">
               <Typewriter
-                words={['Bachelor in Business Computing', 'experience in many projects', 'social events participation']}
+                key={i18n.resolvedLanguage}
+                words={t('hero.typewriter', { returnObjects: true })}
                 loop={true}
                 typeSpeed={60}
                 deleteSpeed={40}
@@ -252,16 +223,16 @@ function Home() {
               <Cursor cursorStyle="|" />
             </span>
           </p>
-          
+
           <div className="hero-buttons">
             <button
               className="btn-primary"
               onClick={() => scrollToSection('projects')}
             >
-              View My Work
+              {t('hero.viewWork')}
             </button>
             <NavLink to="/contacting" className="btn-secondary">
-              Get in Touch
+              {t('hero.getInTouch')}
             </NavLink>
           </div>
 
@@ -285,8 +256,8 @@ function Home() {
 
       <section id="skills" className="section dark-section" data-aos="fade-up">
         <div className="section-header">
-          <h2>Skills & Technologies</h2>
-          <p>Technologies I've worked with</p>
+          <h2>{t('skills.heading')}</h2>
+          <p>{t('skills.subheading')}</p>
         </div>
         <div className="skills-grid">
           {skills.map((skill, index) => (
@@ -306,8 +277,8 @@ function Home() {
 
       <section id="academic" className="section" data-aos="fade-up">
         <div className="section-header">
-          <h2>Academic Career</h2>
-          <p>My educational journey</p>
+          <h2>{t('academic.heading')}</h2>
+          <p>{t('academic.subheading')}</p>
         </div>
         <div className="timeline">
           {academicCareer.map((item, index) => (
@@ -327,8 +298,8 @@ function Home() {
 
       <section id="projects" className="section dark-section" data-aos="zoom-in">
         <div className="section-header">
-          <h2>My Projects</h2>
-          <p>Some of my recent work</p>
+          <h2>{t('projects.heading')}</h2>
+          <p>{t('projects.subheading')}</p>
         </div>
         <div className="projects-grid">
           {projects.map((proj, index) => (
@@ -357,7 +328,7 @@ function Home() {
                   onClick={() => openVideoModal(proj.video)}
                 >
                   <FontAwesomeIcon icon={faPlay} className="btn-icon" />
-                  <span className="btn-text">View Demo</span>
+                  <span className="btn-text">{t('projects.viewDemo')}</span>
                 </button>
               )}
             </div>
@@ -633,32 +604,31 @@ function Home() {
           <div className="currency-teaser-text">
             <div className="currency-teaser-badge">
               <div className="currency-teaser-badge-dot" />
-              Live Tool
+              {t('currencyTeaser.badge')}
             </div>
 
             <h2 className="currency-teaser-title">
-              Real-Time <span>Currency Converter</span>
+              {t('currencyTeaser.titlePrefix')}<span>{t('currencyTeaser.titleHighlight')}</span>
             </h2>
 
             <p className="currency-teaser-desc">
-              One of my interactive live tools — instantly convert between 12+ world currencies
-              with up-to-date exchange rates. Built with React and the ExchangeRate API.
+              {t('currencyTeaser.description')}
             </p>
 
             <NavLink to="/currency-converter" className="currency-teaser-link">
-              Try the Live Tool
+              {t('currencyTeaser.cta')}
               <FontAwesomeIcon icon={faArrowRight} />
             </NavLink>
 
             <div className="currency-teaser-features">
               <div className="ct-feature-chip">
-                <i className="fas fa-bolt" /> Live Rates
+                <i className="fas fa-bolt" /> {t('currencyTeaser.featureLiveRates')}
               </div>
               <div className="ct-feature-chip">
-                <i className="fas fa-exchange-alt" /> 12+ Currencies
+                <i className="fas fa-exchange-alt" /> {t('currencyTeaser.featureCurrencies')}
               </div>
               <div className="ct-feature-chip">
-                <i className="fab fa-react" /> Built in React
+                <i className="fab fa-react" /> {t('currencyTeaser.featureReact')}
               </div>
             </div>
           </div>
@@ -666,15 +636,15 @@ function Home() {
           {/* Right: animated preview card */}
           <div className="currency-preview-card" data-aos="zoom-in" data-aos-delay="200">
             <div className="cpc-header">
-              <span className="cpc-title">Preview</span>
+              <span className="cpc-title">{t('currencyTeaser.preview')}</span>
               <div className="cpc-live-dot" />
             </div>
 
             <div className="cpc-from-panel">
-              <div className="cpc-panel-label">You send</div>
+              <div className="cpc-panel-label">{t('currencyTeaser.youSend')}</div>
               <div className="cpc-currency-row">
                 <span className="cpc-currency-name pair-fade-enter" key={`from-${activePair}`}>
-                  {currencyPairs[activePair].from}
+                  {CURRENCY_PAIRS[activePair].from}
                 </span>
                 <span className="cpc-amount">1.00</span>
               </div>
@@ -685,19 +655,19 @@ function Home() {
             </div>
 
             <div className="cpc-to-panel">
-              <div className="cpc-panel-label">You receive</div>
+              <div className="cpc-panel-label">{t('currencyTeaser.youReceive')}</div>
               <div className="cpc-currency-row">
                 <span className="cpc-currency-name pair-fade-enter" key={`to-${activePair}`}>
-                  {currencyPairs[activePair].to}
+                  {CURRENCY_PAIRS[activePair].to}
                 </span>
                 <span className="cpc-converted-amount pair-fade-enter" key={`rate-${activePair}`}>
-                  {currencyPairs[activePair].rate}
+                  {CURRENCY_PAIRS[activePair].rate}
                 </span>
               </div>
             </div>
 
             <div className="cpc-rate-badge pair-fade-enter" key={`badge-${activePair}`}>
-              1 {currencyPairs[activePair].from.split(' ')[1]} = {currencyPairs[activePair].rate} {currencyPairs[activePair].to.split(' ')[1]}
+              1 {CURRENCY_PAIRS[activePair].from.split(' ')[1]} = {CURRENCY_PAIRS[activePair].rate} {CURRENCY_PAIRS[activePair].to.split(' ')[1]}
             </div>
           </div>
 
@@ -707,8 +677,8 @@ function Home() {
 
       <section id="experience" className="section" data-aos="zoom-out">
         <div className="section-header">
-          <h2>Work Experience</h2>
-          <p>My professional journey</p>
+          <h2>{t('experience.heading')}</h2>
+          <p>{t('experience.subheading')}</p>
         </div>
         <div className="experience-timeline">
           {workExperience.map((work, index) => (
@@ -745,8 +715,8 @@ function Home() {
 
       <section id="social" className="section dark-section" data-aos="fade-up">
         <div className="section-header">
-          <h2>Social Life</h2>
-          <p>Community involvement</p>
+          <h2>{t('social.heading')}</h2>
+          <p>{t('social.subheading')}</p>
         </div>
         <div className="social-grid">
           {socialLife.map((item, index) => (
@@ -768,24 +738,24 @@ function Home() {
 
       <section id="graphic" className="section graphic-section" data-aos="fade-up">
         <div className="section-header">
-          <h2>Graphic Design Library</h2>
-          <p>My creative designs</p>
+          <h2>{t('graphic.heading')}</h2>
+          <p>{t('graphic.subheading')}</p>
         </div>
         <div className="graphic-library">
           {graphicItems.map((item, index) => (
-            <div 
-              className="graphic-item" 
-              key={index} 
-              data-aos="zoom-in" 
-              onClick={() => openModal(item)} 
-              role="button" 
-              tabIndex={0} 
+            <div
+              className="graphic-item"
+              key={index}
+              data-aos="zoom-in"
+              onClick={() => openModal(item)}
+              role="button"
+              tabIndex={0}
               onKeyDown={(e) => e.key === 'Enter' && openModal(item)}
             >
               <div className="graphic-image-container">
                 <img src={item.src} alt={item.title} className="graphic-img" />
                 <div className="graphic-overlay">
-                  <span>View Details</span>
+                  <span>{t('graphic.viewDetails')}</span>
                 </div>
               </div>
               <p>{item.title}</p>
@@ -796,15 +766,15 @@ function Home() {
 
       <section id="languages" className="section dark-section" data-aos="fade-up">
         <div className="section-header">
-          <h2>Languages</h2>
-          <p>Languages I speak</p>
+          <h2>{t('languages.heading')}</h2>
+          <p>{t('languages.subheading')}</p>
         </div>
         <div className="languages-grid">
           <div className="language-item">
             <img src={require('./pics/ar.png')} alt="Arabic" className="flag-icon" />
             <div className="language-info">
-              <span className="language-name">Arabic</span>
-              <span className="language-level">Fluent (Native)</span>
+              <span className="language-name">{t('languages.names.arabic')}</span>
+              <span className="language-level">{t('languages.levels.native')}</span>
             </div>
             <div className="language-progress">
               <div className="progress-bar" style={{width: '100%'}}></div>
@@ -813,8 +783,8 @@ function Home() {
           <div className="language-item">
             <img src={require('./pics/en.png')} alt="English" className="flag-icon" />
             <div className="language-info">
-              <span className="language-name">English</span>
-              <span className="language-level">Excellent</span>
+              <span className="language-name">{t('languages.names.english')}</span>
+              <span className="language-level">{t('languages.levels.excellent')}</span>
             </div>
             <div className="language-progress">
               <div className="progress-bar" style={{width: '90%'}}></div>
@@ -823,8 +793,8 @@ function Home() {
           <div className="language-item">
             <img src={require('./pics/fr.png')} alt="French" className="flag-icon" />
             <div className="language-info">
-              <span className="language-name">French</span>
-              <span className="language-level">Intermediate</span>
+              <span className="language-name">{t('languages.names.french')}</span>
+              <span className="language-level">{t('languages.levels.intermediate')}</span>
             </div>
             <div className="language-progress">
               <div className="progress-bar" style={{width: '70%'}}></div>
@@ -833,8 +803,8 @@ function Home() {
           <div className="language-item">
             <img src={require('./pics/gr.png')} alt="German" className="flag-icon" />
             <div className="language-info">
-              <span className="language-name">German</span>
-              <span className="language-level">Beginner</span>
+              <span className="language-name">{t('languages.names.german')}</span>
+              <span className="language-level">{t('languages.levels.beginner')}</span>
             </div>
             <div className="language-progress">
               <div className="progress-bar" style={{width: '30%'}}></div>
